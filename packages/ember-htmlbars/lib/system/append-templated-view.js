@@ -15,7 +15,7 @@ export default function appendTemplatedView(parentView, morph, viewClassOrInstan
     viewProto = viewClassOrInstance.proto();
   }
 
-  Ember.assert(
+  assert(
     'You cannot provide a template block if you also specified a templateName',
     !props.template || (!get(props, 'templateName') && !get(viewProto, 'templateName'))
   );

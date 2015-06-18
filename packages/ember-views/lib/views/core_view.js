@@ -116,7 +116,7 @@ var CoreView = EmberObject.extend(Evented, ActionHandler, {
       this.ownerView.isDestroyingSubtree = true;
       if (parent) { parent.removeChild(this); }
       if (this._renderNode) {
-        Ember.assert('BUG: Render node exists without concomitant env.', this.ownerView.env);
+        assert('BUG: Render node exists without concomitant env.', this.ownerView.env);
         internal.clearMorph(this._renderNode, this.ownerView.env, true);
       }
       this.ownerView.isDestroyingSubtree = false;
@@ -136,7 +136,7 @@ CoreView.reopenClass({
 
 export var DeprecatedCoreView = CoreView.extend({
   init() {
-    Ember.deprecate('Ember.CoreView is deprecated. Please use Ember.View.', false);
+    deprecate('Ember.CoreView is deprecated. Please use Ember.View.', false);
     this._super.apply(this, arguments);
   }
 });

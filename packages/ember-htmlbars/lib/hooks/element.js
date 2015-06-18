@@ -42,7 +42,7 @@ export default function emberElement(morph, env, scope, path, params, hash, visi
 
   var value = env.hooks.getValue(result);
   if (value) {
-    Ember.deprecate('Returning a string of attributes from a helper inside an element is deprecated.');
+    deprecate('Returning a string of attributes from a helper inside an element is deprecated.');
     updateElementAttributesFromString(morph.element, value);
   }
 }

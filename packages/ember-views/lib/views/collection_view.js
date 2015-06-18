@@ -258,7 +258,7 @@ var CollectionView = ContainerView.extend(EmptyViewSupport, {
     @method _assertArrayLike
   */
   _assertArrayLike(content) {
-    Ember.assert(fmt('an Ember.CollectionView\'s content must implement Ember.Array. You passed %@', [content]), EmberArray.detect(content));
+    assert(fmt('an Ember.CollectionView\'s content must implement Ember.Array. You passed %@', [content]), EmberArray.detect(content));
   },
 
   /**

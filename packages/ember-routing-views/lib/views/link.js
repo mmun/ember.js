@@ -216,7 +216,7 @@ var LinkComponent = EmberComponent.extend({
   init() {
     this._super(...arguments);
 
-    Ember.deprecate('Using currentWhen with {{link-to}} is deprecated in favor of `current-when`.', !this.currentWhen);
+    deprecate('Using currentWhen with {{link-to}} is deprecated in favor of `current-when`.', !this.currentWhen);
 
     // Map desired event name to invoke function
     var eventName = get(this, 'eventName');
@@ -380,7 +380,7 @@ var LinkComponent = EmberComponent.extend({
     // Do not mutate params in place
     var params = attrs.params.slice();
 
-    Ember.assert('You must provide one or more parameters to the link-to helper.', params.length);
+    assert('You must provide one or more parameters to the link-to helper.', params.length);
 
     var lastParam = params[params.length - 1];
 
@@ -405,7 +405,7 @@ var LinkComponent = EmberComponent.extend({
     var currentWhen = attrs['current-when'];
 
     if (attrs.currentWhen) {
-      Ember.deprecate('Using currentWhen with {{link-to}} is deprecated in favor of `current-when`.', !attrs.currentWhen);
+      deprecate('Using currentWhen with {{link-to}} is deprecated in favor of `current-when`.', !attrs.currentWhen);
       currentWhen = attrs.currentWhen;
     }
 
@@ -426,7 +426,7 @@ var LinkComponent = EmberComponent.extend({
       var value = params[i];
 
       while (ControllerMixin.detect(value)) {
-        Ember.deprecate('Providing `{{link-to}}` with a param that is wrapped in a controller is deprecated. Please update `' + attrs.view + '` to use `{{link-to "post" someController.model}}` instead.');
+        deprecate('Providing `{{link-to}}` with a param that is wrapped in a controller is deprecated. Please update `' + attrs.view + '` to use `{{link-to "post" someController.model}}` instead.');
         value = value.get('model');
       }
 

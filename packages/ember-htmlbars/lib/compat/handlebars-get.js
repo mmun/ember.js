@@ -19,7 +19,7 @@ import Ember from 'ember-metal/core';
   @public
 */
 export default function handlebarsGet(root, path, options) {
-  Ember.deprecate('Usage of Ember.Handlebars.get is deprecated, use a Component or Ember.Handlebars.makeBoundHelper instead.');
+  deprecate('Usage of Ember.Handlebars.get is deprecated, use a Component or Ember.Handlebars.makeBoundHelper instead.');
 
   return options.legacyGetPath(path);
 }

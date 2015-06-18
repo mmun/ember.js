@@ -61,8 +61,8 @@ export function get(obj, keyName) {
     obj = Ember.lookup;
   }
 
-  Ember.assert(`Cannot call get with ${keyName} key.`, !!keyName);
-  Ember.assert(`Cannot call get with '${keyName}' on an undefined object.`, obj !== undefined);
+  assert(`Cannot call get with ${keyName} key.`, !!keyName);
+  assert(`Cannot call get with '${keyName}' on an undefined object.`, obj !== undefined);
 
   if (isNone(obj)) {
     return _getPath(obj, keyName);

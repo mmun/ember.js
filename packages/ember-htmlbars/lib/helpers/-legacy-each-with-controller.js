@@ -17,7 +17,7 @@ export default function legacyEachWithControllerHelper(params, hash, blocks) {
     var self;
 
     if (blocks.template.arity === 0) {
-      Ember.deprecate(deprecation);
+      deprecate(deprecation);
       self = normalizeSelf(item);
       self = bindController(self, true);
     }

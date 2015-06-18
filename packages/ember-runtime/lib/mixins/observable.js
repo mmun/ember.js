@@ -330,7 +330,7 @@ export default Mixin.create({
   },
 
   addBeforeObserver(key, target, method) {
-    Ember.deprecate('Before observers are deprecated and will be removed in a future release. If you want to keep track of previous values you have to implement it yourself.', false, { url: 'http://emberjs.com/guides/deprecations/#toc_deprecate-beforeobservers' });
+    deprecate('Before observers are deprecated and will be removed in a future release. If you want to keep track of previous values you have to implement it yourself.', false, { url: 'http://emberjs.com/guides/deprecations/#toc_deprecate-beforeobservers' });
     addBeforeObserver(this, key, target, method);
   },
 
@@ -450,7 +450,7 @@ export default Mixin.create({
   */
   incrementProperty(keyName, increment) {
     if (isNone(increment)) { increment = 1; }
-    Ember.assert('Must pass a numeric value to incrementProperty', (!isNaN(parseFloat(increment)) && isFinite(increment)));
+    assert('Must pass a numeric value to incrementProperty', (!isNaN(parseFloat(increment)) && isFinite(increment)));
     return set(this, keyName, (parseFloat(get(this, keyName)) || 0) + increment);
   },
 
@@ -470,7 +470,7 @@ export default Mixin.create({
   */
   decrementProperty(keyName, decrement) {
     if (isNone(decrement)) { decrement = 1; }
-    Ember.assert('Must pass a numeric value to decrementProperty', (!isNaN(parseFloat(decrement)) && isFinite(decrement)));
+    assert('Must pass a numeric value to decrementProperty', (!isNaN(parseFloat(decrement)) && isFinite(decrement)));
     return set(this, keyName, (get(this, keyName) || 0) - decrement);
   },
 

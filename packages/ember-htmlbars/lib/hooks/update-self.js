@@ -17,7 +17,7 @@ export default function updateSelf(env, scope, _self) {
     updateScope(scope.locals, 'controller', controller || self);
   }
 
-  Ember.assert('BUG: scope.attrs and self.isView should not both be true', !(scope.attrs && self.isView));
+  assert('BUG: scope.attrs and self.isView should not both be true', !(scope.attrs && self.isView));
 
   if (self && self.isView) {
     scope.view = self;

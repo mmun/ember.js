@@ -52,7 +52,7 @@ function deprecatePaths(moduleName, node, paths) {
 }
 
 function deprecatePath(moduleName, node, path) {
-  Ember.deprecate(`Using \`{{${path && path.type === 'PathExpression' && path.parts[0]}}}\` or any path based on it ${calculateLocationDisplay(moduleName, node.loc)}has been deprecated.`, function deprecatePath_test() {
+  deprecate(`Using \`{{${path && path.type === 'PathExpression' && path.parts[0]}}}\` or any path based on it ${calculateLocationDisplay(moduleName, node.loc)}has been deprecated.`, function deprecatePath_test() {
     let noDeprecate = true;
 
     const viewKeyword = path && path.type === 'PathExpression' && path.parts && path.parts[0];

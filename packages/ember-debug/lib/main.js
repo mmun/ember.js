@@ -26,15 +26,15 @@ function isPlainFunction(test) {
 overrideImplementation({
   /**
     Define an assertion that will throw an exception if the condition is not
-    met. Ember build tools will remove any calls to `Ember.assert()` when
+    met. Ember build tools will remove any calls to `assert()` when
     doing a production build. Example:
 
     ```javascript
     // Test for truthiness
-    Ember.assert('Must pass a valid object', obj);
+    assert('Must pass a valid object', obj);
 
     // Fail unconditionally
-    Ember.assert('This code path should never be run');
+    assert('This code path should never be run');
     ```
 
     @method assert
@@ -61,7 +61,7 @@ overrideImplementation({
 
   /**
     Display a warning with the provided message. Ember build tools will
-    remove any calls to `Ember.warn()` when doing a production build.
+    remove any calls to `warn()` when doing a production build.
 
     @method warn
     @param {String} message A warning to display.
@@ -80,10 +80,10 @@ overrideImplementation({
 
   /**
     Display a debug notice. Ember build tools will remove any calls to
-    `Ember.debug()` when doing a production build.
+    `debug()` when doing a production build.
 
     ```javascript
-    Ember.debug('I\'m a debug notice!');
+    debug('I\'m a debug notice!');
     ```
 
     @method debug
@@ -97,7 +97,7 @@ overrideImplementation({
   /**
     Display a deprecation warning with the provided message and a stack trace
     (Chrome and Firefox only). Ember build tools will remove any calls to
-    `Ember.deprecate()` when doing a production build.
+    `deprecate()` when doing a production build.
 
     @method deprecate
     @param {String} message A description of the deprecation.
@@ -143,7 +143,7 @@ overrideImplementation({
     try { __fail__.fail(); } catch (e) { error = e; }
 
     if (arguments.length === 3) {
-      Ember.assert('options argument to Ember.deprecate should be an object', options && typeof options === 'object');
+      assert('options argument to Ember.deprecate should be an object', options && typeof options === 'object');
       if (options.url) {
         message += ' See ' + options.url + ' for more details.';
       }
@@ -178,11 +178,11 @@ overrideImplementation({
     Display a deprecation warning with the provided message and a stack trace
     (Chrome and Firefox only) when the assigned method is called.
 
-    Ember build tools will not remove calls to `Ember.deprecateFunc()`, though
+    Ember build tools will not remove calls to `deprecateFunc()`, though
     no warnings will be shown in production.
 
     ```javascript
-    Ember.oldMethod = Ember.deprecateFunc('Please use the new, updated method', Ember.newMethod);
+    Ember.oldMethod = deprecateFunc('Please use the new, updated method', Ember.newMethod);
     ```
 
     @method deprecateFunc
@@ -193,17 +193,17 @@ overrideImplementation({
   */
   deprecateFunc(message, func) {
     return function() {
-      Ember.deprecate(message);
+      deprecate(message);
       return func.apply(this, arguments);
     };
   },
 
   /**
     Run a function meant for debugging. Ember build tools will remove any calls to
-    `Ember.runInDebug()` when doing a production build.
+    `runInDebug()` when doing a production build.
 
     ```javascript
-    Ember.runInDebug(function() {
+    runInDebug(function() {
       Ember.Handlebars.EachView.reopen({
         didInsertElement: function() {
           console.log('I\'m happy');
@@ -223,7 +223,7 @@ overrideImplementation({
 });
 
 /**
-  Will call `Ember.warn()` if ENABLE_ALL_FEATURES, ENABLE_OPTIONAL_FEATURES, or
+  Will call `warn()` if ENABLE_ALL_FEATURES, ENABLE_OPTIONAL_FEATURES, or
   any specific FEATURES flag is truthy.
 
   This method is called automatically in debug canary builds.
@@ -234,12 +234,12 @@ overrideImplementation({
 */
 export function _warnIfUsingStrippedFeatureFlags(FEATURES, featuresWereStripped) {
   if (featuresWereStripped) {
-    Ember.warn('Ember.ENV.ENABLE_ALL_FEATURES is only available in canary builds.', !Ember.ENV.ENABLE_ALL_FEATURES);
-    Ember.warn('Ember.ENV.ENABLE_OPTIONAL_FEATURES is only available in canary builds.', !Ember.ENV.ENABLE_OPTIONAL_FEATURES);
+    warn('Ember.ENV.ENABLE_ALL_FEATURES is only available in canary builds.', !Ember.ENV.ENABLE_ALL_FEATURES);
+    warn('Ember.ENV.ENABLE_OPTIONAL_FEATURES is only available in canary builds.', !Ember.ENV.ENABLE_OPTIONAL_FEATURES);
 
     for (var key in FEATURES) {
       if (FEATURES.hasOwnProperty(key) && key !== 'isEnabled') {
-        Ember.warn('FEATURE["' + key + '"] is set as enabled, but FEATURE flags are only available in canary builds.', !FEATURES[key]);
+        warn('FEATURE["' + key + '"] is set as enabled, but FEATURE flags are only available in canary builds.', !FEATURES[key]);
       }
     }
   }
@@ -272,7 +272,7 @@ if (!Ember.testing) {
           downloadURL = 'https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/';
         }
 
-        Ember.debug('For more advanced debugging, install the Ember Inspector from ' + downloadURL);
+        debug('For more advanced debugging, install the Ember Inspector from ' + downloadURL);
       }
     }, false);
   }
@@ -295,5 +295,5 @@ Ember.Debug = {
 */
 export var runningNonEmberDebugJS = false;
 if (runningNonEmberDebugJS) {
-  Ember.warn('Please use `ember.debug.js` instead of `ember.js` for development and debugging.');
+  warn('Please use `ember.debug.js` instead of `ember.js` for development and debugging.');
 }

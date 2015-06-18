@@ -648,11 +648,11 @@ export function readOnly(dependentKey) {
 export function deprecatingAlias(dependentKey) {
   return computed(dependentKey, {
     get(key) {
-      Ember.deprecate(`Usage of \`${key}\` is deprecated, use \`${dependentKey}\` instead.`);
+      deprecate(`Usage of \`${key}\` is deprecated, use \`${dependentKey}\` instead.`);
       return get(this, dependentKey);
     },
     set(key, value) {
-      Ember.deprecate(`Usage of \`${key}\` is deprecated, use \`${dependentKey}\` instead.`);
+      deprecate(`Usage of \`${key}\` is deprecated, use \`${dependentKey}\` instead.`);
       set(this, dependentKey, value);
       return value;
     }

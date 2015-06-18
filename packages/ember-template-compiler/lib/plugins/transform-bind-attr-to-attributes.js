@@ -83,7 +83,7 @@ TransformBindAttrToAttributes.prototype.transformValue = function transformValue
       case 'SubExpression':
         return b.mustache(value.path, value.params, value.hash);
       default:
-        Ember.assert('Unsupported attribute value type: ' + value.type);
+        assert('Unsupported attribute value type: ' + value.type);
     }
   } else {
     switch (value.type) {
@@ -94,7 +94,7 @@ TransformBindAttrToAttributes.prototype.transformValue = function transformValue
       case 'SubExpression':
         return b.mustache(value.path, value.params, value.hash);
       default:
-        Ember.assert('Unsupported attribute value type: ' + value.type);
+        assert('Unsupported attribute value type: ' + value.type);
     }
   }
 
@@ -155,7 +155,7 @@ TransformBindAttrToAttributes.prototype.parseClass = function parseClass(value) 
         b.string(parts[2])
       ]);
     default:
-      Ember.assert('Unsupported bind-attr class syntax: `' + value + '`');
+      assert('Unsupported bind-attr class syntax: `' + value + '`');
   }
 };
 
@@ -165,7 +165,7 @@ function isBindAttrModifier(modifier, moduleName) {
   let moduleInfo = calculateLocationDisplay(moduleName, modifier.path.loc);
 
   if (name === 'bind-attr' || name === 'bindAttr') {
-    Ember.deprecate(
+    deprecate(
       'The `' + name + '` helper ' + moduleInfo + 'is deprecated in favor of ' +
       'HTMLBars-style bound attributes.'
     );
@@ -181,13 +181,13 @@ function assertAttrNameIsUnused(element, name) {
 
     if (attr.name === name) {
       if (name === 'class') {
-        Ember.assert(
+        assert(
           'You cannot set `class` manually and via `{{bind-attr}}` helper ' +
           'on the same element. Please use `{{bind-attr}}`\'s `:static-class` ' +
           'syntax instead.'
         );
       } else {
-        Ember.assert(
+        assert(
           'You cannot set `' + name + '` manually and via `{{bind-attr}}` ' +
           'helper on the same element.'
         );

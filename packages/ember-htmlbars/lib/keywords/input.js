@@ -6,7 +6,7 @@ export default {
     var type = env.hooks.getValue(hash.type);
     var componentName = componentNameMap[type] || defaultComponentName;
 
-    Ember.assert('{{input type=\'checkbox\'}} does not support setting `value=someBooleanValue`;' +
+    assert('{{input type=\'checkbox\'}} does not support setting `value=someBooleanValue`;' +
                  ' you must use `checked=someBooleanValue` instead.', !(type === 'checkbox' && hash.hasOwnProperty('value')));
 
     return assign({}, lastState, { componentName });

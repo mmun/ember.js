@@ -33,13 +33,13 @@ export let UNHANDLED_SET = symbol('UNHANDLED_SET');
 */
 export function set(obj, keyName, value, tolerant) {
   if (typeof obj === 'string') {
-    Ember.assert(`Path '${obj}' must be global if no obj is given.`, isGlobalPath(obj));
+    assert(`Path '${obj}' must be global if no obj is given.`, isGlobalPath(obj));
     value = keyName;
     keyName = obj;
     obj = Ember.lookup;
   }
 
-  Ember.assert(`Cannot call set with '${keyName}' key.`, !!keyName);
+  assert(`Cannot call set with '${keyName}' key.`, !!keyName);
 
   if (obj === Ember.lookup) {
     return setPath(obj, keyName, value, tolerant);
@@ -65,8 +65,8 @@ export function set(obj, keyName, value, tolerant) {
     return setPath(obj, keyName, value, tolerant);
   }
 
-  Ember.assert('You need to provide an object and key to `set`.', !!obj && keyName !== undefined);
-  Ember.assert('calling set on destroyed object', !obj.isDestroyed);
+  assert('You need to provide an object and key to `set`.', !!obj && keyName !== undefined);
+  assert('calling set on destroyed object', !obj.isDestroyed);
 
   if (desc) {
     desc.set(obj, keyName, value);

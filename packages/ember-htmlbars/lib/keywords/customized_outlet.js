@@ -10,7 +10,7 @@ import { isStream } from 'ember-metal/streams/utils';
 
 export default {
   setupState(state, env, scope, params, hash) {
-    Ember.assert(
+    assert(
       'Using a quoteless view parameter with {{outlet}} is not supported',
       !hash.view || !isStream(hash.view)
     );

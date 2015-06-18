@@ -202,7 +202,7 @@ export default ArrayProxy.extend(ControllerMixin, SortableMixin, {
   },
 
   init() {
-    Ember.deprecate(arrayControllerDeprecation);
+    deprecate(arrayControllerDeprecation);
     this._super(...arguments);
     this._subControllers = [];
   },
@@ -212,7 +212,7 @@ export default ArrayProxy.extend(ControllerMixin, SortableMixin, {
       return Ember.A();
     },
     set(key, value) {
-      Ember.assert(
+      assert(
         'ArrayController expects `model` to implement the Ember.Array mixin. ' +
         'This can often be fixed by wrapping your model with `Ember.A()`.',
         EmberArray.detect(value) || !value

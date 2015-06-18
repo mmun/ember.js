@@ -712,7 +712,7 @@ function binarySearch(array, item, low, high) {
   @public
 */
 export function sort(itemsKey, sortDefinition) {
-  Ember.assert('Ember.computed.sort requires two arguments: an array key to sort and ' +
+  assert('Ember.computed.sort requires two arguments: an array key to sort and ' +
     'either a sort properties key or sort function', arguments.length === 2);
 
   if (typeof sortDefinition === 'function') {
@@ -772,7 +772,7 @@ function propertySort(itemsKey, sortPropertiesKey) {
         var sortPropertyAscending = instanceMeta.sortPropertyAscending = {};
         var sortProperty, idx, asc;
 
-        Ember.assert('Cannot sort: \'' + sortPropertiesKey + '\' is not an array.',
+        assert('Cannot sort: \'' + sortPropertiesKey + '\' is not an array.',
                      isArray(sortPropertyDefinitions));
 
         changeMeta.property.clearItemPropertyKeys(itemsKey);

@@ -32,7 +32,7 @@ function getKey(scope, key) {
 
   if (scope.attrs && key in scope.attrs) {
     // TODO: attrs
-    // Ember.deprecate("You accessed the `" + key + "` attribute directly. Please use `attrs." + key + "` instead.");
+    // deprecate("You accessed the `" + key + "` attribute directly. Please use `attrs." + key + "` instead.");
     return scope.attrs[key];
   } else if (self) {
     return self.getKey(key);
@@ -40,7 +40,7 @@ function getKey(scope, key) {
 }
 
 function getGlobal(name) {
-  Ember.deprecate('Global lookup of ' + name + ' from a Handlebars template is deprecated.');
+  deprecate('Global lookup of ' + name + ' from a Handlebars template is deprecated.');
 
   // This stream should be memoized, but this path is deprecated and
   // will be removed soon so it's not worth the trouble.

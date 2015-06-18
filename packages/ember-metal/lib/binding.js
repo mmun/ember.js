@@ -165,7 +165,7 @@ Binding.prototype = {
     @public
   */
   connect(obj) {
-    Ember.assert('Must pass a valid object to Ember.Binding.connect()', !!obj);
+    assert('Must pass a valid object to Ember.Binding.connect()', !!obj);
 
     var fromPath = this._from;
     var toPath = this._to;
@@ -194,7 +194,7 @@ Binding.prototype = {
     @public
   */
   disconnect(obj) {
-    Ember.assert('Must pass a valid object to Ember.Binding.disconnect()', !!obj);
+    assert('Must pass a valid object to Ember.Binding.disconnect()', !!obj);
 
     var twoWay = !this._oneWay;
 

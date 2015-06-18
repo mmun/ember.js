@@ -19,7 +19,7 @@ var proto = EmberAttrMorph.prototype = Object.create(HTMLBarsAttrMorph.prototype
 proto.HTMLBarsAttrMorph$setContent = HTMLBarsAttrMorph.prototype.setContent;
 
 proto._deprecateEscapedStyle = function EmberAttrMorph_deprecateEscapedStyle(value) {
-  Ember.warn(
+  warn(
     styleWarning,
     (function(name, value, escaped) {
       // SafeString

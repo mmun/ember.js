@@ -40,7 +40,7 @@ function K() { return this; }
 @submodule ember-views
 */
 
-Ember.warn('The VIEW_PRESERVES_CONTEXT flag has been removed and the functionality can no longer be disabled.', Ember.ENV.VIEW_PRESERVES_CONTEXT !== false);
+warn('The VIEW_PRESERVES_CONTEXT flag has been removed and the functionality can no longer be disabled.', Ember.ENV.VIEW_PRESERVES_CONTEXT !== false);
 
 /**
   Global hash of shared templates. This will automatically be populated
@@ -737,7 +737,7 @@ var View = CoreView.extend(
     get() {
       var templateName = get(this, 'templateName');
       var template = this.templateForName(templateName, 'template');
-      Ember.assert('You specified the templateName ' + templateName + ' for ' + this + ', but it did not exist.', !templateName || !!template);
+      assert('You specified the templateName ' + templateName + ' for ' + this + ', but it did not exist.', !templateName || !!template);
       return template || get(this, 'defaultTemplate');
     },
     set(key, value) {
@@ -766,7 +766,7 @@ var View = CoreView.extend(
       var layoutName = get(this, 'layoutName');
       var layout = this.templateForName(layoutName, 'layout');
 
-      Ember.assert('You specified the layoutName ' + layoutName + ' for ' + this + ', but it did not exist.', !layoutName || !!layout);
+      assert('You specified the layoutName ' + layoutName + ' for ' + this + ', but it did not exist.', !layoutName || !!layout);
 
       return layout || get(this, 'defaultLayout');
     },
@@ -778,7 +778,7 @@ var View = CoreView.extend(
 
   templateForName(name, type) {
     if (!name) { return; }
-    Ember.assert('templateNames are not allowed to contain periods: '+name, name.indexOf('.') === -1);
+    assert('templateNames are not allowed to contain periods: '+name, name.indexOf('.') === -1);
 
     if (!this.container) {
       throw new EmberError('Container was not found when looking up a views template. ' +
@@ -916,7 +916,7 @@ var View = CoreView.extend(
     @public
   */
   $(sel) {
-    Ember.assert('You cannot access this.$() on a component with `tagName: \'\'` specified.', this.tagName !== '');
+    assert('You cannot access this.$() on a component with `tagName: \'\'` specified.', this.tagName !== '');
     return this.currentState.$(this, sel);
   },
 
@@ -960,8 +960,8 @@ var View = CoreView.extend(
   appendTo(selector) {
     var target = jQuery(selector);
 
-    Ember.assert('You tried to append to (' + selector + ') but that isn\'t in the DOM', target.length > 0);
-    Ember.assert('You cannot append to an existing Ember.View. Consider using Ember.ContainerView instead.', !target.is('.ember-view') && !target.parents().is('.ember-view'));
+    assert('You tried to append to (' + selector + ') but that isn\'t in the DOM', target.length > 0);
+    assert('You cannot append to an existing Ember.View. Consider using Ember.ContainerView instead.', !target.is('.ember-view') && !target.parents().is('.ember-view'));
 
     this.renderer.appendTo(this, target[0]);
 
@@ -1038,8 +1038,8 @@ var View = CoreView.extend(
   replaceIn(selector) {
     var target = jQuery(selector);
 
-    Ember.assert('You tried to replace in (' + selector + ') but that isn\'t in the DOM', target.length > 0);
-    Ember.assert('You cannot replace an existing Ember.View. Consider using Ember.ContainerView instead.', !target.is('.ember-view') && !target.parents().is('.ember-view'));
+    assert('You tried to replace in (' + selector + ') but that isn\'t in the DOM', target.length > 0);
+    assert('You cannot replace an existing Ember.View. Consider using Ember.ContainerView instead.', !target.is('.ember-view') && !target.parents().is('.ember-view'));
 
     this.renderer.replaceIn(this, target[0]);
 
@@ -1335,15 +1335,15 @@ var View = CoreView.extend(
   scheduleRevalidate(node, label, manualRerender) {
     if (node && !this._dispatching && node.guid in this.env.renderedNodes) {
       if (manualRerender) {
-        Ember.deprecate(`You manually rerendered ${label} (a parent component) from a child component during the rendering process. This rarely worked in Ember 1.x and will be removed in Ember 2.0`);
+        deprecate(`You manually rerendered ${label} (a parent component) from a child component during the rendering process. This rarely worked in Ember 1.x and will be removed in Ember 2.0`);
       } else {
-        Ember.deprecate(`You modified ${label} twice in a single render. This was unreliable in Ember 1.x and will be removed in Ember 2.0`);
+        deprecate(`You modified ${label} twice in a single render. This was unreliable in Ember 1.x and will be removed in Ember 2.0`);
       }
       run.scheduleOnce('render', this, this.revalidate);
       return;
     }
 
-    Ember.deprecate(`A property of ${this} was modified inside the ${this._dispatching} hook. You should never change properties on components, services or models during ${this._dispatching} because it causes significant performance degradation.`, !this._dispatching);
+    deprecate(`A property of ${this} was modified inside the ${this._dispatching} hook. You should never change properties on components, services or models during ${this._dispatching} because it causes significant performance degradation.`, !this._dispatching);
 
     if (!this.scheduledRevalidation || this._dispatching) {
       this.scheduledRevalidation = true;
@@ -1432,7 +1432,7 @@ var View = CoreView.extend(
     @private
   */
   _register() {
-    Ember.assert('Attempted to register a view with an id already in use: '+this.elementId, !this._viewRegistry[this.elementId]);
+    assert('Attempted to register a view with an id already in use: '+this.elementId, !this._viewRegistry[this.elementId]);
     this._viewRegistry[this.elementId] = this;
   },
 
@@ -1526,7 +1526,7 @@ View.childViewsProperty = childViewsProperty;
 var DeprecatedView = View.extend({
   init() {
     this._super(...arguments);
-    Ember.deprecate(`Ember.View is deprecated. Consult the Deprecations Guide for a migration strategy.`, !!Ember.ENV._ENABLE_LEGACY_VIEW_SUPPORT, { url: 'http://emberjs.com/deprecations/v1.x/#toc_ember-view' });
+    deprecate(`Ember.View is deprecated. Consult the Deprecations Guide for a migration strategy.`, !!Ember.ENV._ENABLE_LEGACY_VIEW_SUPPORT, { url: 'http://emberjs.com/deprecations/v1.x/#toc_ember-view' });
   }
 });
 

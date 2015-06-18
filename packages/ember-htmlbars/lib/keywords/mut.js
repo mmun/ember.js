@@ -40,7 +40,7 @@ function mutParam(read, stream, internal) {
       };
     }
   } else {
-    Ember.assert('You can only pass a path to mut', isStream(stream));
+    assert('You can only pass a path to mut', isStream(stream));
   }
 
   if (stream[MUTABLE_REFERENCE]) {

@@ -125,7 +125,7 @@ ControllerMixin.reopen({
     @private
   */
   transitionTo() {
-    Ember.deprecate('transitionTo is deprecated. Please use transitionToRoute.');
+    deprecate('transitionTo is deprecated. Please use transitionToRoute.');
     return this.transitionToRoute(...arguments);
   },
 
@@ -199,7 +199,7 @@ ControllerMixin.reopen({
     @private
   */
   replaceWith() {
-    Ember.deprecate('replaceWith is deprecated. Please use replaceRoute.');
+    deprecate('replaceWith is deprecated. Please use replaceRoute.');
     return this.replaceRoute(...arguments);
   }
 });

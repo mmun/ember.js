@@ -11,7 +11,7 @@ import keys from 'ember-metal/keys';
   @public
 */
 function inject() {
-  Ember.assert('Injected properties must be created through helpers, see `' +
+  assert('Injected properties must be created through helpers, see `' +
                keys(inject).join('`, `') + '`');
 }
 

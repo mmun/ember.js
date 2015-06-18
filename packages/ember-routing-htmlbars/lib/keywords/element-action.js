@@ -9,7 +9,7 @@ import ActionManager from 'ember-views/system/action_manager';
 function assert(message, test) {
   // This only exists to prevent defeatureify from error when attempting
   // to transform the same source twice (tldr; you can't nest stripped statements)
-  Ember.assert(message, test);
+  assert(message, test);
 }
 
 export default {
@@ -115,7 +115,7 @@ ActionHelper.registerAction = function({ actionId, node, eventName, preventDefau
         if (target.send) {
           target.send.apply(target, [actionName, ...actionArgs]);
         } else {
-          Ember.assert(
+          assert(
             'The action \'' + actionName + '\' did not exist on ' + target,
             typeof target[actionName] === 'function'
           );

@@ -127,7 +127,7 @@ export default Mixin.create(MutableEnumerable, {
     var sortAscending = get(this, 'sortAscending');
     var sortFunction = get(this, 'sortFunction');
 
-    Ember.assert('you need to define `sortProperties`', !!sortProperties);
+    assert('you need to define `sortProperties`', !!sortProperties);
 
     sortProperties.forEach((propertyName) => {
       if (result === 0) {

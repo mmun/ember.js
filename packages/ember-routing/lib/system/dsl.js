@@ -26,7 +26,7 @@ DSL.prototype = {
     }
 
     var type = options.resetNamespace === true ? 'resource' : 'route';
-    Ember.assert(
+    assert(
       `'${name}' cannot be used as a ${type} name.`,
       (function() {
         if (options.overrideNameAssertion === true) { return true; }

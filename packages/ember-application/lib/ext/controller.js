@@ -4,7 +4,7 @@
 @public
 */
 
-import Ember from 'ember-metal/core'; // Ember.assert
+import { assert, deprecate } from 'ember-metal/assert';
 import { get } from 'ember-metal/property_get';
 import EmberError from 'ember-metal/error';
 import { inspect } from 'ember-metal/utils';
@@ -19,7 +19,7 @@ function verifyNeedsDependencies(controller, container, needs) {
   for (i=0, l=needs.length; i<l; i++) {
     dependency = needs[i];
 
-    Ember.assert(inspect(controller) + '#needs must not specify dependencies with periods in their names (' +
+    assert(inspect(controller) + '#needs must not specify dependencies with periods in their names (' +
                  dependency + ')', dependency.indexOf('.') === -1);
 
     if (dependency.indexOf(':') === -1) {
@@ -132,7 +132,7 @@ ControllerMixin.reopen({
     var length = get(needs, 'length');
 
     if (length > 0) {
-      Ember.assert(' `' + inspect(this) + ' specifies `needs`, but does ' +
+      assert(' `' + inspect(this) + ' specifies `needs`, but does ' +
                    'not have a container. Please ensure this controller was ' +
                    'instantiated with a container.',
                    this.container || this.controllers !== defaultControllersComputedProperty);
@@ -155,7 +155,7 @@ ControllerMixin.reopen({
     @public
   */
   controllerFor(controllerName) {
-    Ember.deprecate('Controller#controllerFor is deprecated, please use Controller#needs instead');
+    deprecate('Controller#controllerFor is deprecated, please use Controller#needs instead');
     return controllerFor(get(this, 'container'), controllerName);
   },
 

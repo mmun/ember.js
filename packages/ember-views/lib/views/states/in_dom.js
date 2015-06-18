@@ -19,7 +19,7 @@ merge(inDOM, {
       view._register();
     }
 
-    Ember.runInDebug(function() {
+    runInDebug(function() {
       addBeforeObserver(view, 'elementId', function() {
         throw new EmberError('Changing a view\'s elementId after creation is not allowed');
       });

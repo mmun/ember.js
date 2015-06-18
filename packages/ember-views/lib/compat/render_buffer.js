@@ -131,12 +131,12 @@ export function renderComponentWithBuffer(component, contextualElement, dom) {
 */
 
 var RenderBuffer = function(domHelper) {
-  Ember.deprecate('`Ember.RenderBuffer` is deprecated.');
+  deprecate('`Ember.RenderBuffer` is deprecated.');
   this.buffer = null;
   this.childViews = [];
   this.attrNodes = [];
 
-  Ember.assert('RenderBuffer requires a DOM helper to be passed to its constructor.', !!domHelper);
+  assert('RenderBuffer requires a DOM helper to be passed to its constructor.', !!domHelper);
 
   this.dom = domHelper;
 };
@@ -285,7 +285,7 @@ RenderBuffer.prototype = {
       var childView = childViews[i];
       var ref = el.querySelector('#morph-'+i);
 
-      Ember.assert('An error occurred while setting up template bindings. Please check ' +
+      assert('An error occurred while setting up template bindings. Please check ' +
                    (((childView && childView.parentView && childView._parentView._debugTemplateName ? '"' + childView._parentView._debugTemplateName + '" template ' : ''))
                    )  + 'for invalid markup or bindings within HTML comments.',
                    ref);
@@ -314,10 +314,10 @@ RenderBuffer.prototype = {
       if (this.buffer === null) {
         this.buffer = '';
       }
-      Ember.assert('A string cannot be pushed into the buffer after a fragment', !this.buffer.nodeType);
+      assert('A string cannot be pushed into the buffer after a fragment', !this.buffer.nodeType);
       this.buffer += content;
     } else {
-      Ember.assert('A fragment cannot be pushed into a buffer that contains content', !this.buffer);
+      assert('A fragment cannot be pushed into a buffer that contains content', !this.buffer);
       this.buffer = content;
     }
     return this;
@@ -584,7 +584,7 @@ RenderBuffer.prototype = {
 
   outerContextualElement() {
     if (this._outerContextualElement === undefined) {
-      Ember.deprecate('The render buffer expects an outer contextualElement to exist.' +
+      deprecate('The render buffer expects an outer contextualElement to exist.' +
                       ' This ensures DOM that requires context is correctly generated (tr, SVG tags).' +
                       ' Defaulting to document.body, but this will be removed in the future');
       this.outerContextualElement = document.body;

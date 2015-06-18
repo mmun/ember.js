@@ -178,7 +178,7 @@ ComputedPropertyPrototype.volatile = function() {
 */
 ComputedPropertyPrototype.readOnly = function() {
   this._readOnly = true;
-  Ember.assert('Computed properties that define a setter using the new syntax cannot be read-only', !(this._readOnly && this._setter && this._setter !== this._getter));
+  assert('Computed properties that define a setter using the new syntax cannot be read-only', !(this._readOnly && this._setter && this._setter !== this._getter));
   return this;
 };
 

@@ -129,7 +129,7 @@ OrderedSet.prototype = {
     @private
   */
   remove(obj, _guid) {
-    Ember.deprecate('Calling `OrderedSet.prototype.remove` has been deprecated, please use `OrderedSet.prototype.delete` instead.', this._silenceRemoveDeprecation);
+    deprecate('Calling `OrderedSet.prototype.remove` has been deprecated, please use `OrderedSet.prototype.delete` instead.', this._silenceRemoveDeprecation);
 
     return this.delete(obj, _guid);
   },
@@ -352,7 +352,7 @@ Map.prototype = {
     @private
   */
   remove(key) {
-    Ember.deprecate('Calling `Map.prototype.remove` has been deprecated, please use `Map.prototype.delete` instead.');
+    deprecate('Calling `Map.prototype.remove` has been deprecated, please use `Map.prototype.delete` instead.');
 
     return this.delete(key);
   },

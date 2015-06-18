@@ -46,7 +46,7 @@ ComponentNodeManager.create = function(renderNode, env, options) {
   // the container.
   let { component, layout } = lookupComponent(env.container, tagName);
 
-  Ember.assert('HTMLBars error: Could not find component named "' + tagName + '" (no component or template with that name was found)', function() {
+  assert('HTMLBars error: Could not find component named "' + tagName + '" (no component or template with that name was found)', function() {
     return component || layout;
   });
 
@@ -147,7 +147,7 @@ function extractComponentTemplates(component, _templates) {
     // as the layout.
     layout = componentTemplate;
     templates = _templates;
-    Ember.deprecate('Using deprecated `template` property on a Component.');
+    deprecate('Using deprecated `template` property on a Component.');
   }
 
   return { layout, templates };
@@ -160,7 +160,7 @@ function extractLegacyTemplate(_templates, componentTemplate) {
   // There is no block template provided but the component has a
   // `template` property.
   if ((!_templates || !_templates.default) && componentTemplate) {
-    Ember.deprecate('Using deprecated `template` property on a Component.');
+    deprecate('Using deprecated `template` property on a Component.');
     templates = { default: componentTemplate.raw };
   } else {
     templates = _templates;
@@ -214,7 +214,7 @@ ComponentNodeManager.prototype.render = function(_env, visitor) {
 export function handleLegacyRender(component, element) {
   if (!component.render) { return; }
 
-  Ember.assert('Legacy render functions are not supported with angle-bracket components', !component._isAngleBracket);
+  assert('Legacy render functions are not supported with angle-bracket components', !component._isAngleBracket);
 
   var content, node, lastChildIndex;
   var buffer = [];
@@ -279,7 +279,7 @@ export function createComponent(_component, isAngleBracket, _props, renderNode, 
 
   if (!isAngleBracket) {
     let hasSuppliedController = 'controller' in attrs; // 2.0TODO remove
-    Ember.deprecate('controller= is deprecated', !hasSuppliedController);
+    deprecate('controller= is deprecated', !hasSuppliedController);
 
     let snapshot = takeSnapshot(attrs);
     props.attrs = snapshot;
@@ -320,7 +320,7 @@ function shadowedAttrs(target, attrs) {
   for (var attr in attrs) {
     if (attr in target) {
       // TODO: Should we issue a deprecation here?
-      //Ember.deprecate(deprecation(attr));
+      //deprecate(deprecation(attr));
       shadowed[attr] = attrs[attr];
     }
   }
@@ -346,7 +346,7 @@ function mergeBindings(target, attrs) {
     // set `"blah"` to the root of the target because
     // that would replace all attrs with `attrs.attrs`
     if (prop === 'attrs') {
-      Ember.warn(`Invoking a component with a hash attribute named \`attrs\` is not supported. Please refactor usage of ${target} to avoid passing \`attrs\` as a hash parameter.`);
+      warn(`Invoking a component with a hash attribute named \`attrs\` is not supported. Please refactor usage of ${target} to avoid passing \`attrs\` as a hash parameter.`);
       continue;
     }
     let value = attrs[prop];

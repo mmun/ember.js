@@ -95,7 +95,7 @@ function check(app, selector, context) {
   var $el = app.testHelpers.findWithAssert(selector, context);
   var type = $el.prop('type');
 
-  Ember.assert('To check \'' + selector +
+  assert('To check \'' + selector +
       '\', the input must be a checkbox', type === 'checkbox');
 
   if (!$el.prop('checked')) {
@@ -109,7 +109,7 @@ function uncheck(app, selector, context) {
   var $el = app.testHelpers.findWithAssert(selector, context);
   var type = $el.prop('type');
 
-  Ember.assert('To uncheck \'' + selector +
+  assert('To uncheck \'' + selector +
       '\', the input must be a checkbox', type === 'checkbox');
 
   if ($el.prop('checked')) {

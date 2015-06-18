@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core'; // Ember.assert
+import { assert, deprecate } from 'ember-metal/assert';
 import emberKeys from 'ember-metal/keys';
 import dictionary from 'ember-metal/dictionary';
 
@@ -21,7 +21,7 @@ var Registry;
  */
 function Container(registry, options) {
   this._registry = registry || (function() {
-    Ember.deprecate('A container should only be created for an already instantiated registry. For backward compatibility, an isolated registry will be instantiated just for this container.');
+    deprecate('A container should only be created for an already instantiated registry. For backward compatibility, an isolated registry will be instantiated just for this container.');
 
     // TODO - See note above about transpiler import workaround.
     if (!Registry) { Registry = requireModule('container/registry')['default']; }
@@ -111,7 +111,7 @@ Container.prototype = {
    @return {any}
    */
   lookup(fullName, options) {
-    Ember.assert('fullName must be a proper full name', this._registry.validateFullName(fullName));
+    assert('fullName must be a proper full name', this._registry.validateFullName(fullName));
     return lookup(this, this._registry.normalize(fullName), options);
   },
 
@@ -124,7 +124,7 @@ Container.prototype = {
    @return {any}
    */
   lookupFactory(fullName) {
-    Ember.assert('fullName must be a proper full name', this._registry.validateFullName(fullName));
+    assert('fullName must be a proper full name', this._registry.validateFullName(fullName));
     return factoryFor(this, this._registry.normalize(fullName));
   },
 
@@ -178,7 +178,7 @@ Container.prototype = {
 
   function exposeRegistryMethod(method) {
     Container.prototype[method] = function() {
-      Ember.deprecate(method + ' should be called on the registry instead of the container');
+      deprecate(method + ' should be called on the registry instead of the container');
       return this._registry[method].apply(this._registry, arguments);
     };
   }

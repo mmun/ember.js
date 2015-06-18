@@ -75,7 +75,7 @@ export default function eachHelper(params, hash, blocks) {
   var keyPath = hash.key;
 
   if (blocks.template.arity === 0) {
-    Ember.deprecate(deprecation);
+    deprecate(deprecation);
   }
 
   if (shouldDisplay(list)) {

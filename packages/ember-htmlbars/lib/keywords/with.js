@@ -42,19 +42,19 @@ export default {
       hash.controller = morph.state.controller;
     }
 
-    Ember.assert(
+    assert(
       '{{#with foo}} must be called with a single argument or the use the ' +
       '{{#with foo as bar}} syntax',
       params.length === 1
     );
 
-    Ember.assert(
+    assert(
       'The {{#with}} helper must be called with a block',
       !!template
     );
 
     if (template && template.arity === 0) {
-      Ember.deprecate(
+      deprecate(
         'Using the context switching form of `{{with}}` is deprecated. ' +
           'Please use the block param form (`{{#with bar as |foo|}}`) instead.',
         false,

@@ -21,12 +21,12 @@ TransformOldBindingSyntax.prototype.transform = function TransformOldBindingSynt
 
       if (key === 'classBinding') { return; }
 
-      Ember.assert(`Setting 'attributeBindings' via template helpers is not allowed ${sourceInformation}`, key !== 'attributeBindings');
+      assert(`Setting 'attributeBindings' via template helpers is not allowed ${sourceInformation}`, key !== 'attributeBindings');
 
       if (key.substr(-7) === 'Binding') {
         let newKey = key.slice(0, -7);
 
-        Ember.deprecate(`You're using legacy binding syntax: ${key}=${exprToString(value)} ${sourceInformation}. Please replace with ${newKey}=${value.original}`);
+        deprecate(`You're using legacy binding syntax: ${key}=${exprToString(value)} ${sourceInformation}. Please replace with ${newKey}=${value.original}`);
 
         pair.key = newKey;
         if (value.type === 'StringLiteral') {

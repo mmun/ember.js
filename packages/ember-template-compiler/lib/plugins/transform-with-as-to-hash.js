@@ -48,7 +48,7 @@ TransformWithAsToHash.prototype.transform = function TransformWithAsToHash_trans
 
       let moduleInfo = calculateLocationDisplay(moduleName, node.program.loc);
 
-      Ember.deprecate(
+      deprecate(
         'Using {{with}} without block syntax ' + moduleInfo + 'is deprecated. ' +
         'Please use standard block form (`{{#with foo as |bar|}}`) ' +
         'instead.',

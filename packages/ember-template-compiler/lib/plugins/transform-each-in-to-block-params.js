@@ -64,7 +64,7 @@ TransformEachInToBlockParams.prototype.transform = function TransformEachInToBlo
         ));
       }
 
-      Ember.deprecate(
+      deprecate(
         `Using the '{{#each item in model}}' form of the {{#each}} helper ${moduleInfo}is deprecated. ` +
           `Please use the block param form instead ('{{#each model as |item|}}').`,
         false,

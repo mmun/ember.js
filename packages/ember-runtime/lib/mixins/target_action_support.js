@@ -135,7 +135,7 @@ var TargetActionSupport = Mixin.create({
       if (target.send) {
         ret = target.send.apply(target, args(actionContext, action));
       } else {
-        Ember.assert('The action \'' + action + '\' did not exist on ' + target, typeof target[action] === 'function');
+        assert('The action \'' + action + '\' did not exist on ' + target, typeof target[action] === 'function');
         ret = target[action].apply(target, args(actionContext));
       }
 

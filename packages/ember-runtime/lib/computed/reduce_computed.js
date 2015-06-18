@@ -85,7 +85,7 @@ function DependentArraysObserver(callbacks, cp, instanceMeta, context, propertyN
 }
 
 function ItemPropertyObserverContext(dependentArray, index, trackedArray) {
-  Ember.assert('Internal error: trackedArray is null or undefined', trackedArray);
+  assert('Internal error: trackedArray is null or undefined', trackedArray);
 
   this.dependentArray = dependentArray;
   this.index = index;
@@ -481,12 +481,12 @@ function ReduceComputedProperty(options) {
   // default internal macros which will be reimplemented as plain
   // array methods
   if (this._isArrayComputed) {
-    Ember.deprecate(
+    deprecate(
       'Ember.arrayComputed is deprecated. Replace it with plain array methods',
       options._suppressDeprecation
     );
   } else {
-    Ember.deprecate(
+    deprecate(
       'Ember.reduceComputed is deprecated. Replace it with plain array methods',
       options._suppressDeprecation
     );
@@ -517,7 +517,7 @@ function ReduceComputedProperty(options) {
 
     meta.dependentArraysObserver.suspendArrayObservers(function () {
       cp._dependentKeys.forEach(function (dependentKey) {
-        Ember.assert(
+        assert(
           'dependent array ' + dependentKey + ' must be an `Ember.Array`.  ' +
           'If you are not extending arrays, you will need to wrap native arrays with `Ember.A`',
           !(isArray(get(this, dependentKey)) && !EmberArray.detect(get(this, dependentKey))));
@@ -565,7 +565,7 @@ function ReduceComputedProperty(options) {
 
 
   this._getter = function (propertyName) {
-    Ember.assert('Computed reduce values require at least one dependent key', cp._dependentKeys);
+    assert('Computed reduce values require at least one dependent key', cp._dependentKeys);
 
     recompute.call(this, propertyName);
 

@@ -413,7 +413,7 @@ var EmberRouter = EmberObject.extend(Evented, {
   },
 
   _connectActiveComponentNode(templateName, componentNode) {
-    Ember.assert('cannot connect an activeView that already exists', !this._activeViews[templateName]);
+    assert('cannot connect an activeView that already exists', !this._activeViews[templateName]);
 
     var _activeViews = this._activeViews;
     function disconnectActiveView() {
@@ -546,7 +546,7 @@ var EmberRouter = EmberObject.extend(Evented, {
 
     for (var key in groupedByUrlKey) {
       var qps = groupedByUrlKey[key];
-      Ember.assert(fmt('You\'re not allowed to have more than one controller ' +
+      assert(fmt('You\'re not allowed to have more than one controller ' +
                        'property map to the same query param key, but both ' +
                        '`%@` and `%@` map to `%@`. You can fix this by mapping ' +
                        'one of the controller properties to a different query ' +
@@ -576,7 +576,7 @@ var EmberRouter = EmberObject.extend(Evented, {
 
   _doTransition(_targetRouteName, models, _queryParams) {
     var targetRouteName = _targetRouteName || getActiveTargetName(this.router);
-    Ember.assert(`The route ${targetRouteName} was not found`, targetRouteName && this.router.hasRoute(targetRouteName));
+    assert(`The route ${targetRouteName} was not found`, targetRouteName && this.router.hasRoute(targetRouteName));
 
     var queryParams = {};
     merge(queryParams, _queryParams);
@@ -998,7 +998,7 @@ function didBeginTransition(transition, router) {
   transition.then(null, function(error) {
     if (!error || !error.name) { return; }
 
-    Ember.assert(`The URL '${error.message}' did not match any routes in your application`, error.name !== 'UnrecognizedURLError');
+    assert(`The URL '${error.message}' did not match any routes in your application`, error.name !== 'UnrecognizedURLError');
 
     return error;
   }, 'Ember: Process errors from Router');
@@ -1082,7 +1082,7 @@ function appendOrphan(liveRoutes, into, myState) {
   Ember.run.schedule('afterRender', function() {
     // `wasUsed` gets set by the render helper. See the function
     // `impersonateAnOutlet`.
-    Ember.assert('You attempted to render into \'' + into + '\' but it was not found',
+    assert('You attempted to render into \'' + into + '\' but it was not found',
                  liveRoutes.outlets.__ember_orphans__.outlets[into].wasUsed);
   });
 }

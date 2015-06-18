@@ -221,7 +221,7 @@ function applyConcatenatedProperties(obj, key, value, values) {
 function applyMergedProperties(obj, key, value, values) {
   var baseValue = values[key] || obj[key];
 
-  Ember.assert(`You passed in \`${JSON.stringify(value)}\` as the value for \`${key}\` but \`${key}\` cannot be an Array`, !isArray(value));
+  assert(`You passed in \`${JSON.stringify(value)}\` as the value for \`${key}\` but \`${key}\` cannot be an Array`, !isArray(value));
 
   if (!baseValue) { return value; }
 
@@ -286,7 +286,7 @@ function mergeMixins(mixins, m, descs, values, base, keys) {
 
   for (var i=0, l=mixins.length; i<l; i++) {
     currentMixin = mixins[i];
-    Ember.assert(`Expected hash or Mixin instance, got ${Object.prototype.toString.call(currentMixin)}`,
+    assert(`Expected hash or Mixin instance, got ${Object.prototype.toString.call(currentMixin)}`,
                  typeof currentMixin === 'object' && currentMixin !== null && Object.prototype.toString.call(currentMixin) !== '[object Array]');
 
     props = mixinProperties(m, currentMixin);
@@ -617,7 +617,7 @@ MixinPrototype.reopen = function() {
 
   for (idx=0; idx < len; idx++) {
     currentMixin = arguments[idx];
-    Ember.assert(`Expected hash or Mixin instance, got ${Object.prototype.toString.call(currentMixin)}`,
+    assert(`Expected hash or Mixin instance, got ${Object.prototype.toString.call(currentMixin)}`,
                  typeof currentMixin === 'object' && currentMixin !== null &&
                    Object.prototype.toString.call(currentMixin) !== '[object Array]');
 
@@ -740,7 +740,7 @@ REQUIRED.toString = function() { return '(Required Property)'; };
   @private
 */
 export function required() {
-  Ember.deprecate('Ember.required is deprecated as its behavior is inconsistent and unreliable.', false);
+  deprecate('Ember.required is deprecated as its behavior is inconsistent and unreliable.', false);
   return REQUIRED;
 }
 
@@ -856,11 +856,11 @@ export function observer(...args) {
   @private
 */
 export function immediateObserver() {
-  Ember.deprecate('Usage of `Ember.immediateObserver` is deprecated, use `Ember.observer` instead.');
+  deprecate('Usage of `Ember.immediateObserver` is deprecated, use `Ember.observer` instead.');
 
   for (var i=0, l=arguments.length; i<l; i++) {
     var arg = arguments[i];
-    Ember.assert('Immediate observers must observe internal properties only, not properties on other objects.',
+    assert('Immediate observers must observe internal properties only, not properties on other objects.',
                  typeof arg !== 'string' || arg.indexOf('.') === -1);
   }
 

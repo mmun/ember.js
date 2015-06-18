@@ -21,7 +21,7 @@ export default function shouldDisplay(predicate) {
 }
 
 function ShouldDisplayStream(predicate) {
-  Ember.assert('ShouldDisplayStream error: predicate must be a stream', isStream(predicate));
+  assert('ShouldDisplayStream error: predicate must be a stream', isStream(predicate));
 
   var isTruthy = predicate.get('isTruthy');
 

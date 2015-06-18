@@ -416,7 +416,7 @@ export function setMeta(obj, property, value) {
     shared with its constructor
 */
 export function metaPath(obj, path, writable) {
-  Ember.deprecate('Ember.metaPath is deprecated and will be removed from future releases.');
+  deprecate('Ember.metaPath is deprecated and will be removed from future releases.');
   var _meta = meta(obj, writable);
   var keyName, value;
 
@@ -622,7 +622,7 @@ if (needsFinallyFix) {
 }
 
 var deprecatedTryFinally = function() {
-  Ember.deprecate('tryFinally is deprecated. Please use JavaScript\'s native try/finally.', false);
+  deprecate('tryFinally is deprecated. Please use JavaScript\'s native try/finally.', false);
   return tryFinally.apply(this, arguments);
 };
 
@@ -709,7 +709,7 @@ if (needsFinallyFix) {
 }
 
 var deprecatedTryCatchFinally = function() {
-  Ember.deprecate('tryCatchFinally is deprecated. Please use JavaScript\'s native try/catch/finally.', false);
+  deprecate('tryCatchFinally is deprecated. Please use JavaScript\'s native try/catch/finally.', false);
   return tryCatchFinally.apply(this, arguments);
 };
 

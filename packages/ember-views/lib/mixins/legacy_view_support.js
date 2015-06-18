@@ -69,7 +69,7 @@ var LegacyViewSupport = Mixin.create({
     @private
   */
   nearestChildOf(klass) {
-    Ember.deprecate('nearestChildOf has been deprecated.');
+    deprecate('nearestChildOf has been deprecated.');
 
     var view = get(this, 'parentView');
 
@@ -90,7 +90,7 @@ var LegacyViewSupport = Mixin.create({
     @private
   */
   nearestInstanceOf(klass) {
-    Ember.deprecate('nearestInstanceOf is deprecated and will be removed from future releases. Use nearestOfType.');
+    deprecate('nearestInstanceOf is deprecated and will be removed from future releases. Use nearestOfType.');
     var view = get(this, 'parentView');
 
     while (view) {

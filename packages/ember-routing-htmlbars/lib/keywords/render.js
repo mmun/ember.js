@@ -18,7 +18,7 @@ export default {
   setupState(prevState, env, scope, params, hash) {
     var name = params[0];
 
-    Ember.assert(
+    assert(
       'The first argument of {{render}} must be quoted, e.g. {{render "sidebar"}}.',
       typeof name === 'string'
     );
@@ -57,14 +57,14 @@ export default {
     //
     var router = container.lookup('router:main');
 
-    Ember.assert(
+    assert(
       'The second argument of {{render}} must be a path, e.g. {{render "post" post}}.',
       params.length < 2 || isStream(params[1])
     );
 
     if (params.length === 1) {
       // use the singleton controller
-      Ember.assert(
+      assert(
         'You can only use the {{render}} helper once without a model object as ' +
         'its second argument, as in {{render "post" post}}.',
         !router || !router._lookupActiveComponentNode(name)
@@ -78,7 +78,7 @@ export default {
     // \ legacy slash as namespace support
 
     var templateName = 'template:' + name;
-    Ember.assert(
+    assert(
       'You used `{{render \'' + name + '\'}}`, but \'' + name + '\' can not be ' +
       'found as either a template or a view.',
       container._registry.has('view:' + name) || container._registry.has(templateName) || !!template
@@ -106,7 +106,7 @@ export default {
       controllerFullName = 'controller:' + controllerName;
       delete hash.controller;
 
-      Ember.assert(
+      assert(
         'The controller name you supplied \'' + controllerName + '\' ' +
         'did not resolve to a controller.',
         container._registry.has(controllerFullName)

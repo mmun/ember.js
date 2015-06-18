@@ -16,7 +16,7 @@ function validateAction(component, actionName) {
   if (actionName && actionName[MUTABLE_CELL]) {
     actionName = actionName.value;
   }
-  Ember.assert('The default action was triggered on the component ' + component.toString() +
+  assert('The default action was triggered on the component ' + component.toString() +
                ', but the action name (' + actionName + ') was not a string.',
                isNone(actionName) || typeof actionName === 'string' || typeof actionName === 'function');
   return actionName;
@@ -157,7 +157,7 @@ var Component = View.extend(TargetActionSupport, ComponentTemplateDeprecation, {
   */
   template: computed('_template', {
     get() {
-      Ember.deprecate(`Accessing 'template' in ${this} is deprecated. To determine if a block was specified to ${this} please use '{{#if hasBlock}}' in the components layout.`);
+      deprecate(`Accessing 'template' in ${this} is deprecated. To determine if a block was specified to ${this} please use '{{#if hasBlock}}' in the components layout.`);
 
       return get(this, '_template');
     },
@@ -175,7 +175,7 @@ var Component = View.extend(TargetActionSupport, ComponentTemplateDeprecation, {
       var templateName = get(this, 'templateName');
       var template = this.templateForName(templateName, 'template');
 
-      Ember.assert('You specified the templateName ' + templateName + ' for ' + this + ', but it did not exist.', !templateName || !!template);
+      assert('You specified the templateName ' + templateName + ' for ' + this + ', but it did not exist.', !templateName || !!template);
       return template || get(this, 'defaultTemplate');
     },
     set(key, value) {
@@ -323,7 +323,7 @@ var Component = View.extend(TargetActionSupport, ComponentTemplateDeprecation, {
     }
 
     if (target = get(this, 'target')) {
-      Ember.assert('The `target` for ' + this + ' (' + target +
+      assert('The `target` for ' + this + ' (' + target +
                    ') does not have a `send` method', typeof target.send === 'function');
       target.send(...arguments);
     } else {

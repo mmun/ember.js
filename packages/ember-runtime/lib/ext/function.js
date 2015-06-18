@@ -137,7 +137,7 @@ if (Ember.EXTEND_PROTOTYPES === true || Ember.EXTEND_PROTOTYPES.Function) {
     @private
   */
   FunctionPrototype.observesImmediately = function () {
-    Ember.assert('Immediate observers must observe internal properties only, ' +
+    assert('Immediate observers must observe internal properties only, ' +
                  'not properties on other objects.', function checkIsInternalProperty() {
       for (var i = 0, l = arguments.length; i < l; i++) {
         if (arguments[i].indexOf('.') !== -1) {
