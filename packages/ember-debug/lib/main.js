@@ -1,6 +1,7 @@
 /*global __fail__*/
 
 import Ember from 'ember-metal/core';
+import { overrideImplementation } from 'ember-metal/assert';
 import isEnabled, { FEATURES } from 'ember-metal/features';
 import EmberError from 'ember-metal/error';
 import Logger from 'ember-metal/logger';
@@ -22,206 +23,204 @@ function isPlainFunction(test) {
   return typeof test === 'function' && test.PrototypeMixin === undefined;
 }
 
-/**
-  Define an assertion that will throw an exception if the condition is not
-  met. Ember build tools will remove any calls to `Ember.assert()` when
-  doing a production build. Example:
+overrideImplementation({
+  /**
+    Define an assertion that will throw an exception if the condition is not
+    met. Ember build tools will remove any calls to `Ember.assert()` when
+    doing a production build. Example:
 
-  ```javascript
-  // Test for truthiness
-  Ember.assert('Must pass a valid object', obj);
+    ```javascript
+    // Test for truthiness
+    Ember.assert('Must pass a valid object', obj);
 
-  // Fail unconditionally
-  Ember.assert('This code path should never be run');
-  ```
+    // Fail unconditionally
+    Ember.assert('This code path should never be run');
+    ```
 
-  @method assert
-  @param {String} desc A description of the assertion. This will become
-    the text of the Error thrown if the assertion fails.
-  @param {Boolean|Function} test Must be truthy for the assertion to pass. If
-    falsy, an exception will be thrown. If this is a function, it will be executed and
-    its return value will be used as condition.
-  @public
-*/
-Ember.assert = function(desc, test) {
-  var throwAssertion;
+    @method assert
+    @param {String} desc A description of the assertion. This will become
+      the text of the Error thrown if the assertion fails.
+    @param {Boolean|Function} test Must be truthy for the assertion to pass. If
+      falsy, an exception will be thrown. If this is a function, it will be executed and
+      its return value will be used as condition.
+    @public
+  */
+  assert(desc, test) {
+    var throwAssertion;
 
-  if (isPlainFunction(test)) {
-    throwAssertion = !test();
-  } else {
-    throwAssertion = !test;
-  }
-
-  if (throwAssertion) {
-    throw new EmberError('Assertion Failed: ' + desc);
-  }
-};
-
-
-/**
-  Display a warning with the provided message. Ember build tools will
-  remove any calls to `Ember.warn()` when doing a production build.
-
-  @method warn
-  @param {String} message A warning to display.
-  @param {Boolean} test An optional boolean. If falsy, the warning
-    will be displayed.
-  @public
-*/
-Ember.warn = function(message, test) {
-  if (!test) {
-    Logger.warn('WARNING: '+message);
-    if ('trace' in Logger) {
-      Logger.trace();
-    }
-  }
-};
-
-/**
-  Display a debug notice. Ember build tools will remove any calls to
-  `Ember.debug()` when doing a production build.
-
-  ```javascript
-  Ember.debug('I\'m a debug notice!');
-  ```
-
-  @method debug
-  @param {String} message A debug message to display.
-  @public
-*/
-Ember.debug = function(message) {
-  Logger.debug('DEBUG: '+message);
-};
-
-/**
-  Display a deprecation warning with the provided message and a stack trace
-  (Chrome and Firefox only). Ember build tools will remove any calls to
-  `Ember.deprecate()` when doing a production build.
-
-  @method deprecate
-  @param {String} message A description of the deprecation.
-  @param {Boolean|Function} test An optional boolean. If falsy, the deprecation
-    will be displayed. If this is a function, it will be executed and its return
-    value will be used as condition.
-  @param {Object} options An optional object that can be used to pass
-    in a `url` to the transition guide on the emberjs.com website, and a unique
-    `id` for this deprecation. The `id` can be used by Ember debugging tools
-    to change the behavior (raise, log or silence) for that specific deprecation.
-    The `id` should be namespaced by dots, e.g. "view.helper.select".
-  @public
-*/
-Ember.deprecate = function(message, test, options) {
-  if (Ember.ENV.RAISE_ON_DEPRECATION) {
-    deprecationManager.setDefaultLevel(deprecationLevels.RAISE);
-  }
-  if (deprecationManager.getLevel(options && options.id) === deprecationLevels.SILENCE) {
-    return;
-  }
-
-  var noDeprecation;
-
-  if (isPlainFunction(test)) {
-    noDeprecation = test();
-  } else {
-    noDeprecation = test;
-  }
-
-  if (noDeprecation) { return; }
-
-  if (options && options.id) {
-    message = message + ` [deprecation id: ${options.id}]`;
-  }
-
-  if (deprecationManager.getLevel(options && options.id) === deprecationLevels.RAISE) {
-    throw new EmberError(message);
-  }
-
-  var error;
-
-  // When using new Error, we can't do the arguments check for Chrome. Alternatives are welcome
-  try { __fail__.fail(); } catch (e) { error = e; }
-
-  if (arguments.length === 3) {
-    Ember.assert('options argument to Ember.deprecate should be an object', options && typeof options === 'object');
-    if (options.url) {
-      message += ' See ' + options.url + ' for more details.';
-    }
-  }
-
-  if (Ember.LOG_STACKTRACE_ON_DEPRECATION && error.stack) {
-    var stack;
-    var stackStr = '';
-
-    if (error['arguments']) {
-      // Chrome
-      stack = error.stack.replace(/^\s+at\s+/gm, '').
-                          replace(/^([^\(]+?)([\n$])/gm, '{anonymous}($1)$2').
-                          replace(/^Object.<anonymous>\s*\(([^\)]+)\)/gm, '{anonymous}($1)').split('\n');
-      stack.shift();
+    if (isPlainFunction(test)) {
+      throwAssertion = !test();
     } else {
-      // Firefox
-      stack = error.stack.replace(/(?:\n@:0)?\s+$/m, '').
-                          replace(/^\(/gm, '{anonymous}(').split('\n');
+      throwAssertion = !test;
     }
 
-    stackStr = '\n    ' + stack.slice(2).join('\n    ');
-    message = message + stackStr;
-  }
+    if (throwAssertion) {
+      throw new EmberError('Assertion Failed: ' + desc);
+    }
+  },
 
-  Logger.warn('DEPRECATION: '+message);
-};
+  /**
+    Display a warning with the provided message. Ember build tools will
+    remove any calls to `Ember.warn()` when doing a production build.
 
-
-
-/**
-  Alias an old, deprecated method with its new counterpart.
-
-  Display a deprecation warning with the provided message and a stack trace
-  (Chrome and Firefox only) when the assigned method is called.
-
-  Ember build tools will not remove calls to `Ember.deprecateFunc()`, though
-  no warnings will be shown in production.
-
-  ```javascript
-  Ember.oldMethod = Ember.deprecateFunc('Please use the new, updated method', Ember.newMethod);
-  ```
-
-  @method deprecateFunc
-  @param {String} message A description of the deprecation.
-  @param {Function} func The new function called to replace its deprecated counterpart.
-  @return {Function} a new function that wrapped the original function with a deprecation warning
-  @private
-*/
-Ember.deprecateFunc = function(message, func) {
-  return function() {
-    Ember.deprecate(message);
-    return func.apply(this, arguments);
-  };
-};
-
-
-/**
-  Run a function meant for debugging. Ember build tools will remove any calls to
-  `Ember.runInDebug()` when doing a production build.
-
-  ```javascript
-  Ember.runInDebug(function() {
-    Ember.Handlebars.EachView.reopen({
-      didInsertElement: function() {
-        console.log('I\'m happy');
+    @method warn
+    @param {String} message A warning to display.
+    @param {Boolean} test An optional boolean. If falsy, the warning
+      will be displayed.
+    @public
+  */
+  warn(message, test) {
+    if (!test) {
+      Logger.warn('WARNING: '+message);
+      if ('trace' in Logger) {
+        Logger.trace();
       }
-    });
-  });
-  ```
+    }
+  },
 
-  @method runInDebug
-  @param {Function} func The function to be executed.
-  @since 1.5.0
-  @public
-*/
-Ember.runInDebug = function(func) {
-  func();
-};
+  /**
+    Display a debug notice. Ember build tools will remove any calls to
+    `Ember.debug()` when doing a production build.
+
+    ```javascript
+    Ember.debug('I\'m a debug notice!');
+    ```
+
+    @method debug
+    @param {String} message A debug message to display.
+    @public
+  */
+  debug(message) {
+    Logger.debug('DEBUG: '+message);
+  },
+
+  /**
+    Display a deprecation warning with the provided message and a stack trace
+    (Chrome and Firefox only). Ember build tools will remove any calls to
+    `Ember.deprecate()` when doing a production build.
+
+    @method deprecate
+    @param {String} message A description of the deprecation.
+    @param {Boolean|Function} test An optional boolean. If falsy, the deprecation
+      will be displayed. If this is a function, it will be executed and its return
+      value will be used as condition.
+    @param {Object} options An optional object that can be used to pass
+      in a `url` to the transition guide on the emberjs.com website, and a unique
+      `id` for this deprecation. The `id` can be used by Ember debugging tools
+      to change the behavior (raise, log or silence) for that specific deprecation.
+      The `id` should be namespaced by dots, e.g. "view.helper.select".
+    @public
+  */
+  deprecate(message, test, options) {
+    if (Ember.ENV.RAISE_ON_DEPRECATION) {
+      deprecationManager.setDefaultLevel(deprecationLevels.RAISE);
+    }
+    if (deprecationManager.getLevel(options && options.id) === deprecationLevels.SILENCE) {
+      return;
+    }
+
+    var noDeprecation;
+
+    if (isPlainFunction(test)) {
+      noDeprecation = test();
+    } else {
+      noDeprecation = test;
+    }
+
+    if (noDeprecation) { return; }
+
+    if (options && options.id) {
+      message = message + ` [deprecation id: ${options.id}]`;
+    }
+
+    if (deprecationManager.getLevel(options && options.id) === deprecationLevels.RAISE) {
+      throw new EmberError(message);
+    }
+
+    var error;
+
+    // When using new Error, we can't do the arguments check for Chrome. Alternatives are welcome
+    try { __fail__.fail(); } catch (e) { error = e; }
+
+    if (arguments.length === 3) {
+      Ember.assert('options argument to Ember.deprecate should be an object', options && typeof options === 'object');
+      if (options.url) {
+        message += ' See ' + options.url + ' for more details.';
+      }
+    }
+
+    if (Ember.LOG_STACKTRACE_ON_DEPRECATION && error.stack) {
+      var stack;
+      var stackStr = '';
+
+      if (error['arguments']) {
+        // Chrome
+        stack = error.stack.replace(/^\s+at\s+/gm, '').
+                            replace(/^([^\(]+?)([\n$])/gm, '{anonymous}($1)$2').
+                            replace(/^Object.<anonymous>\s*\(([^\)]+)\)/gm, '{anonymous}($1)').split('\n');
+        stack.shift();
+      } else {
+        // Firefox
+        stack = error.stack.replace(/(?:\n@:0)?\s+$/m, '').
+                            replace(/^\(/gm, '{anonymous}(').split('\n');
+      }
+
+      stackStr = '\n    ' + stack.slice(2).join('\n    ');
+      message = message + stackStr;
+    }
+
+    Logger.warn('DEPRECATION: '+message);
+  },
+
+  /**
+    Alias an old, deprecated method with its new counterpart.
+
+    Display a deprecation warning with the provided message and a stack trace
+    (Chrome and Firefox only) when the assigned method is called.
+
+    Ember build tools will not remove calls to `Ember.deprecateFunc()`, though
+    no warnings will be shown in production.
+
+    ```javascript
+    Ember.oldMethod = Ember.deprecateFunc('Please use the new, updated method', Ember.newMethod);
+    ```
+
+    @method deprecateFunc
+    @param {String} message A description of the deprecation.
+    @param {Function} func The new function called to replace its deprecated counterpart.
+    @return {Function} a new function that wrapped the original function with a deprecation warning
+    @private
+  */
+  deprecateFunc(message, func) {
+    return function() {
+      Ember.deprecate(message);
+      return func.apply(this, arguments);
+    };
+  },
+
+  /**
+    Run a function meant for debugging. Ember build tools will remove any calls to
+    `Ember.runInDebug()` when doing a production build.
+
+    ```javascript
+    Ember.runInDebug(function() {
+      Ember.Handlebars.EachView.reopen({
+        didInsertElement: function() {
+          console.log('I\'m happy');
+        }
+      });
+    });
+    ```
+
+    @method runInDebug
+    @param {Function} func The function to be executed.
+    @since 1.5.0
+    @public
+  */
+  runInDebug(func) {
+    func();
+  }
+});
 
 /**
   Will call `Ember.warn()` if ENABLE_ALL_FEATURES, ENABLE_OPTIONAL_FEATURES, or

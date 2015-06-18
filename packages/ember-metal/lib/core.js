@@ -162,15 +162,4 @@ export { K };
 Ember.K = K;
 //TODO: ES6 GLOBAL TODO
 
-// Stub out the methods defined by the ember-debug package in case it's not loaded
-
-if ('undefined' === typeof Ember.assert) { Ember.assert = K; }
-if ('undefined' === typeof Ember.warn) { Ember.warn = K; }
-if ('undefined' === typeof Ember.debug) { Ember.debug = K; }
-if ('undefined' === typeof Ember.runInDebug) { Ember.runInDebug = K; }
-if ('undefined' === typeof Ember.deprecate) { Ember.deprecate = K; }
-if ('undefined' === typeof Ember.deprecateFunc) {
-  Ember.deprecateFunc = function(_, func) { return func; };
-}
-
 export default Ember;
