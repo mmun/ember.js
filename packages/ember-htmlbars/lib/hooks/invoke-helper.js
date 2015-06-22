@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core'; // Ember.assert
+import { assert } from 'ember-metal/assert';
 import { buildHelperStream } from 'ember-htmlbars/system/invoke-helper';
 import subscribe from 'ember-htmlbars/utils/subscribe';
 

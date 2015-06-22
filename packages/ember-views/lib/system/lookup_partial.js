@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core'; // Ember.assert
+import { assert } from 'ember-metal/assert';
 import EmberError from 'ember-metal/error';
 
 export default function lookupPartial(env, templateName) {

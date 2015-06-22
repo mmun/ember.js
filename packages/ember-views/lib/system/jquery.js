@@ -1,4 +1,5 @@
-import Ember from 'ember-metal/core'; // Ember.assert
+import Ember from 'ember-metal/core';
+import { assert } from 'ember-metal/assert';
 
 // ES6TODO: the functions on EnumerableUtils need their own exports
 import environment from 'ember-metal/environment';

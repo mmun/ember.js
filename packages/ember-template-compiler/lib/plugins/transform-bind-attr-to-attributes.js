@@ -3,7 +3,7 @@
 @submodule ember-htmlbars
 */
 
-import Ember from 'ember-metal/core'; // Ember.assert
+import { assert, deprecate } from 'ember-metal/assert';
 import { dasherize } from 'ember-template-compiler/system/string';
 import calculateLocationDisplay from 'ember-template-compiler/system/calculate-location-display';
 

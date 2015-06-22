@@ -8,6 +8,7 @@
 @submodule ember-metal
 */
 import Ember from 'ember-metal/core';
+import { assert } from 'ember-metal/assert';
 import {
   meta as metaFor,
   tryFinally,

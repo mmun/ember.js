@@ -3,7 +3,7 @@
 @submodule ember-htmlbars
 */
 
-import Ember from 'ember-metal/core';
+import { deprecate } from 'ember-metal/assert';
 import { keyword } from 'htmlbars-runtime/hooks';
 
 /*

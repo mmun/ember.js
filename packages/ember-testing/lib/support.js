@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core';
+import { warn } from 'ember-metal/assert';
 import jQuery from 'ember-views/system/jquery';
 
 import environment from 'ember-metal/environment';

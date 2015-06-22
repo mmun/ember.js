@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core'; // assert
+import { assert } from 'ember-metal/assert';
 import { get } from 'ember-metal/property_get';
 import EmberError from 'ember-metal/error';
 import { isStream, read } from 'ember-metal/streams/utils';

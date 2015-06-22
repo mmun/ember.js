@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core';
+import { assert, deprecate } from 'ember-metal/assert';
 import { get } from 'ember-metal/property_get';
 import { isGlobal } from 'ember-metal/path_cache';
 import { fmt } from 'ember-runtime/system/string';

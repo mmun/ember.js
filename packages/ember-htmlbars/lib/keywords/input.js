@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core';
+import { assert } from 'ember-metal/assert';
 import { assign } from 'ember-metal/merge';
 
 export default {

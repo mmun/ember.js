@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core'; // Ember.deprecate
+import { deprecate } from 'ember-metal/assert';
 import { get } from 'ember-metal/property_get';
 import { Mixin } from 'ember-metal/mixin';
 

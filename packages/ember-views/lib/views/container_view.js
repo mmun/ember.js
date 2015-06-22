@@ -1,4 +1,5 @@
 import Ember from 'ember-metal/core';
+import { assert, deprecate } from 'ember-metal/assert';
 import MutableArray from 'ember-runtime/mixins/mutable_array';
 import View from 'ember-views/views/view';
 

@@ -1,11 +1,11 @@
+import { assert, deprecate, warn } from 'ember-metal/assert';
 import merge from 'ember-metal/merge';
-import Ember from 'ember-metal/core';
-import buildComponentTemplate from 'ember-views/system/build-component-template';
 import { get } from 'ember-metal/property_get';
 import { set } from 'ember-metal/property_set';
 import setProperties from 'ember-metal/set_properties';
 import View from 'ember-views/views/view';
 import { MUTABLE_CELL } from 'ember-views/compat/attrs-proxy';
+import buildComponentTemplate from 'ember-views/system/build-component-template';
 import getCellOrValue from 'ember-htmlbars/hooks/get-cell-or-value';
 import { instrument } from 'ember-htmlbars/system/instrumentation-support';
 import { handleLegacyRender } from 'ember-htmlbars/node-managers/component-node-manager';

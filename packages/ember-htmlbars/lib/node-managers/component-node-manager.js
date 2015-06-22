@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core';
+import { assert, deprecate, warn } from 'ember-metal/assert';
 import { assign } from 'ember-metal/merge';
 import buildComponentTemplate from 'ember-views/system/build-component-template';
 import lookupComponent from 'ember-htmlbars/utils/lookup-component';

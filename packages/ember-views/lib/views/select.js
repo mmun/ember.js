@@ -4,6 +4,7 @@
 */
 
 import Ember from 'ember-metal/core';
+import { deprecate } from 'ember-metal/assert';
 import replace from 'ember-metal/replace';
 import { get } from 'ember-metal/property_get';
 import { set } from 'ember-metal/property_set';

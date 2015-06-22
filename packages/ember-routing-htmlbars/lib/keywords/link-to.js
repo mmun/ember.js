@@ -3,8 +3,8 @@
 @submodule ember-routing-htmlbars
 */
 
+import { assert } from 'ember-metal/assert';
 import { readArray, readHash } from 'ember-metal/streams/utils';
-import Ember from 'ember-metal/core'; // assert
 import merge from 'ember-metal/merge';
 
 /**

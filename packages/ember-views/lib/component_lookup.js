@@ -1,4 +1,5 @@
 import Ember from 'ember-metal/core';
+import { assert } from 'ember-metal/assert';
 import EmberObject from 'ember-runtime/system/object';
 import { CONTAINS_DASH_CACHE } from 'ember-htmlbars/system/lookup-helper';
 

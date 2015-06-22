@@ -1,4 +1,5 @@
-import Ember from 'ember-metal/core';
+import Ember from 'ember-metal/core'; // A
+import { deprecate } from 'ember-metal/assert';
 import { get } from 'ember-metal/property_get';
 import { set } from 'ember-metal/property_set';
 import { computed } from 'ember-metal/computed';

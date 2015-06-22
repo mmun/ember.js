@@ -3,7 +3,7 @@
 @submodule ember-htmlbars
 */
 
-import Ember from 'ember-metal/core';
+import { assert, deprecate } from 'ember-metal/assert';
 import helpers from 'ember-htmlbars/helpers';
 import View from 'ember-views/views/view';
 import Component from 'ember-views/views/component';

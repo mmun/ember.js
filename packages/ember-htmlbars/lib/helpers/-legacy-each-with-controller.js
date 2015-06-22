@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core';
+import { deprecate } from 'ember-metal/assert';
 import { get } from 'ember-metal/property_get';
 import normalizeSelf from 'ember-htmlbars/utils/normalize-self';
 import decodeEachKey from 'ember-htmlbars/utils/decode-each-key';

@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core'; // FEATURES, deprecate
+import { deprecate } from 'ember-metal/assert';
 import { get } from 'ember-metal/property_get';
 import ControllerMixin from 'ember-runtime/mixins/controller';
 

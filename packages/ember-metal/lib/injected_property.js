@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core'; // Ember.assert
+import { assert } from 'ember-metal/assert';
 import { ComputedProperty } from 'ember-metal/computed';
 import { AliasedProperty } from 'ember-metal/alias';
 import { Descriptor } from 'ember-metal/properties';

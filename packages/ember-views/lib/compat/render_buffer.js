@@ -4,7 +4,7 @@
 */
 
 import jQuery from 'ember-views/system/jquery';
-import Ember from 'ember-metal/core';
+import { assert, deprecate } from 'ember-metal/assert';
 import { normalizeProperty } from 'dom-helper/prop';
 import { canSetNameOnInputs } from 'ember-views/system/platform';
 

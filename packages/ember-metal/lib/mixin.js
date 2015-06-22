@@ -8,7 +8,8 @@
 @submodule ember-metal
 */
 
-import Ember from 'ember-metal/core'; // warn, assert, wrap, et;
+import Ember from 'ember-metal/core';
+import { assert, deprecate } from 'ember-metal/assert';
 import merge from 'ember-metal/merge';
 import { get } from 'ember-metal/property_get';
 import { set, trySet } from 'ember-metal/property_set';

@@ -2,7 +2,7 @@
 @module ember
 @submodule ember-views
 */
-import Ember from 'ember-metal/core';
+import { assert } from 'ember-metal/assert';
 import { Mixin } from 'ember-metal/mixin';
 import { A as emberA } from 'ember-runtime/system/native_array';
 import {

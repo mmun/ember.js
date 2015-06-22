@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core';
+import { assert } from 'ember-metal/assert';
 import Stream from './stream';
 
 /*

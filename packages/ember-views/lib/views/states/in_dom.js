@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core';
+import { runInDebug } from 'ember-metal/assert';
 import merge from 'ember-metal/merge';
 import EmberError from 'ember-metal/error';
 import { addBeforeObserver } from 'ember-metal/observer';

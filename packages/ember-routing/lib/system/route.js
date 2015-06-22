@@ -1,4 +1,5 @@
-import Ember from 'ember-metal/core'; // FEATURES, A, deprecate, assert, Logger
+import Ember from 'ember-metal/core'; // Logger
+import { assert, deprecate } from 'ember-metal/assert';
 import isEnabled from 'ember-metal/features';
 import EmberError from 'ember-metal/error';
 import { get } from 'ember-metal/property_get';

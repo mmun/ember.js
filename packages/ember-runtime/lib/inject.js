@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core'; // Ember.assert
+import { assert } from 'ember-metal/assert';
 import InjectedProperty from 'ember-metal/injected_property';
 import keys from 'ember-metal/keys';
 

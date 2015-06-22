@@ -1,4 +1,5 @@
 import Ember from 'ember-metal/core';
+import { assert } from 'ember-metal/assert';
 import {
   GUID_KEY
 } from 'ember-metal/utils';

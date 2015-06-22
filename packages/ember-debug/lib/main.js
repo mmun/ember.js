@@ -1,7 +1,13 @@
 /*global __fail__*/
 
 import Ember from 'ember-metal/core';
-import { overrideImplementation } from 'ember-metal/assert';
+import {
+  overrideImplementation,
+  assert,
+  deprecate,
+  warn,
+  debug
+} from 'ember-metal/assert';
 import isEnabled, { FEATURES } from 'ember-metal/features';
 import EmberError from 'ember-metal/error';
 import Logger from 'ember-metal/logger';
@@ -26,15 +32,15 @@ function isPlainFunction(test) {
 overrideImplementation({
   /**
     Define an assertion that will throw an exception if the condition is not
-    met. Ember build tools will remove any calls to `assert()` when
+    met. Ember build tools will remove any calls to `Ember.assert()` when
     doing a production build. Example:
 
     ```javascript
     // Test for truthiness
-    assert('Must pass a valid object', obj);
+    Ember.assert('Must pass a valid object', obj);
 
     // Fail unconditionally
-    assert('This code path should never be run');
+    Ember.assert('This code path should never be run');
     ```
 
     @method assert
@@ -61,7 +67,7 @@ overrideImplementation({
 
   /**
     Display a warning with the provided message. Ember build tools will
-    remove any calls to `warn()` when doing a production build.
+    remove any calls to `Ember.warn()` when doing a production build.
 
     @method warn
     @param {String} message A warning to display.
@@ -80,10 +86,10 @@ overrideImplementation({
 
   /**
     Display a debug notice. Ember build tools will remove any calls to
-    `debug()` when doing a production build.
+    `Ember.debug()` when doing a production build.
 
     ```javascript
-    debug('I\'m a debug notice!');
+    Ember.debug('I\'m a debug notice!');
     ```
 
     @method debug

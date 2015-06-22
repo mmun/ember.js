@@ -3,7 +3,7 @@
 @submodule ember-views
 */
 
-import Ember from 'ember-metal/core'; // Ember.assert
+import { assert } from 'ember-metal/assert';
 import ContainerView from 'ember-views/views/container_view';
 import View from 'ember-views/views/view';
 import EmberArray from 'ember-runtime/mixins/array';

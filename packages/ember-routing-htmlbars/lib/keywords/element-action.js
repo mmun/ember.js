@@ -1,16 +1,10 @@
-import Ember from 'ember-metal/core'; // assert
+import { assert } from 'ember-metal/assert';
 import isEnabled from 'ember-metal/features';
 import { uuid } from 'ember-metal/utils';
 import run from 'ember-metal/run_loop';
 import { readUnwrappedModel } from 'ember-views/streams/utils';
 import { isSimpleClick } from 'ember-views/system/utils';
 import ActionManager from 'ember-views/system/action_manager';
-
-function assert(message, test) {
-  // This only exists to prevent defeatureify from error when attempting
-  // to transform the same source twice (tldr; you can't nest stripped statements)
-  assert(message, test);
-}
 
 export default {
   setupState: function(state, env, scope, params, hash) {

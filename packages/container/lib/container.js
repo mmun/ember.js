@@ -1,3 +1,4 @@
+import Ember from 'ember-metal/core';
 import { assert, deprecate } from 'ember-metal/assert';
 import emberKeys from 'ember-metal/keys';
 import dictionary from 'ember-metal/dictionary';

@@ -3,7 +3,7 @@
 @submodule ember-htmlbars
 */
 
-import Ember from 'ember-metal/core';
+import { assert, deprecate } from 'ember-metal/assert';
 import Cache from 'ember-metal/cache';
 import HandlebarsCompatibleHelper from 'ember-htmlbars/compat/helper';
 

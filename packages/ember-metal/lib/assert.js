@@ -32,6 +32,7 @@ export function debug() {
 }
 
 export function deprecate() {
+  debugger;
   currentImplementation.deprecate.apply(undefined, arguments);
 }
 

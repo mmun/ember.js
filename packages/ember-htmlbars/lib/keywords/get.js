@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core';
+import { assert } from 'ember-metal/assert';
 import isEnabled from 'ember-metal/features';
 import Stream from 'ember-metal/streams/stream';
 import { labelFor } from 'ember-metal/streams/utils';

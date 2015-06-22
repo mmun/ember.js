@@ -3,7 +3,7 @@
 @submodule ember-routing-htmlbars
 */
 
-import Ember from 'ember-metal/core'; // assert
+import { assert } from 'ember-metal/assert';
 import QueryParams from 'ember-routing/system/query_params';
 
 /**

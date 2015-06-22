@@ -2,7 +2,7 @@
 @module ember
 @submodule ember-views
 */
-import Ember from 'ember-metal/core';
+import { deprecate } from 'ember-metal/assert';
 import { Mixin } from 'ember-metal/mixin';
 import { get } from 'ember-metal/property_get';
 

@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core'; // deprecate, assert
+import { assert, deprecate } from 'ember-metal/assert';
 import environment from 'ember-metal/environment';
 import { getHash } from 'ember-routing/location/util';
 

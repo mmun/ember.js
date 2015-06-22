@@ -22,6 +22,7 @@
 */
 
 import Ember from 'ember-metal/core';
+import { deprecate } from 'ember-metal/assert';
 import { guidFor } from 'ember-metal/utils';
 import { deprecateProperty } from 'ember-metal/deprecate_property';
 

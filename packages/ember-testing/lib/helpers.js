@@ -1,4 +1,5 @@
 import Ember from 'ember-metal/core';
+import { assert } from 'ember-metal/assert';
 import isEnabled from 'ember-metal/features';
 import { get } from 'ember-metal/property_get';
 import EmberError from 'ember-metal/error';

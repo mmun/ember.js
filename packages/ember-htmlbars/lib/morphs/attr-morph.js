@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core';
+import { warn } from 'ember-metal/assert';
 import DOMHelper from 'dom-helper';
 
 var HTMLBarsAttrMorph = DOMHelper.prototype.AttrMorphClass;

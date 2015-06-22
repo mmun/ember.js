@@ -2,8 +2,8 @@
 @module ember
 @submodule ember-runtime
 */
-import Ember from 'ember-metal/core'; // Ember.lookup, Ember.assert
-
+import Ember from 'ember-metal/core'; // Ember.lookup
+import { assert } from 'ember-metal/assert';
 import { get } from 'ember-metal/property_get';
 import { Mixin } from 'ember-metal/mixin';
 import { computed } from 'ember-metal/computed';

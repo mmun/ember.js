@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core';
+import { deprecate } from 'ember-metal/assert';
 import { Mixin } from 'ember-metal/mixin';
 
 var ViewStateSupport = Mixin.create({

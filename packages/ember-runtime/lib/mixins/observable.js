@@ -2,8 +2,8 @@
 @module ember
 @submodule ember-runtime
 */
-import Ember from 'ember-metal/core'; // Ember.assert
 
+import { assert, deprecate } from 'ember-metal/assert';
 import {
   get,
   getWithDefault

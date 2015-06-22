@@ -1,8 +1,9 @@
-// Ember.assert, Ember.deprecate, Ember.warn, Ember.TEMPLATES,
+// Ember.TEMPLATES,
 // jQuery, Ember.lookup,
 // Ember.ContainerView circular dependency
 // Ember.ENV
 import Ember from 'ember-metal/core';
+import { assert, deprecate, warn } from 'ember-metal/assert';
 
 import EmberError from 'ember-metal/error';
 import { get } from 'ember-metal/property_get';

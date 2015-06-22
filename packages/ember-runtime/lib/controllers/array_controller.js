@@ -4,6 +4,7 @@
 */
 
 import Ember from 'ember-metal/core';
+import { assert, deprecate } from 'ember-metal/assert';
 import { get } from 'ember-metal/property_get';
 import ArrayProxy from 'ember-runtime/system/array_proxy';
 import SortableMixin from 'ember-runtime/mixins/sortable';

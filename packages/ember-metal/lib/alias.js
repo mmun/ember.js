@@ -1,6 +1,6 @@
 import { get } from 'ember-metal/property_get';
 import { set } from 'ember-metal/property_set';
-import Ember from 'ember-metal/core'; // Ember.assert
+import { assert } from 'ember-metal/assert';
 import EmberError from 'ember-metal/error';
 import {
   Descriptor,

@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core';
+import { deprecate } from 'ember-metal/assert';
 
 export let deprecation = 'The `template` helper has been deprecated in favor of the `partial` helper.';
 

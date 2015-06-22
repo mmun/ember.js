@@ -3,7 +3,7 @@
 @submodule ember-htmlbars
 */
 
-import Ember from 'ember-metal/core';
+import { deprecate } from 'ember-metal/assert';
 
 /**
   Lookup both on root and on window. If the path starts with

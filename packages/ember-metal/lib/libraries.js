@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core';
+import { warn, deprecate } from 'ember-metal/assert';
 import isEnabled from 'ember-metal/features';
 
 /**

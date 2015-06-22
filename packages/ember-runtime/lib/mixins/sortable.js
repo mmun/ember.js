@@ -3,8 +3,8 @@
 @submodule ember-runtime
 */
 
-import Ember from 'ember-metal/core'; // Ember.assert, Ember.A
-
+import Ember from 'ember-metal/core'; // Ember.A
+import { assert } from 'ember-metal/assert';
 import { get } from 'ember-metal/property_get';
 import MutableEnumerable from 'ember-runtime/mixins/mutable_enumerable';
 import compare from 'ember-runtime/compare';

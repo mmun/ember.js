@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core';
+import { assert } from 'ember-metal/assert';
 import merge from 'ember-metal/merge';
 import { get } from 'ember-metal/property_get';
 import { isArray } from 'ember-runtime/utils';

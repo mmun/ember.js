@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core';
+import { deprecate } from 'ember-metal/assert';
 import ControllerMixin from 'ember-runtime/mixins/controller';
 import ObjectProxy from 'ember-runtime/system/object_proxy';
 

@@ -3,7 +3,8 @@
 @submodule ember-routing-views
 */
 
-import Ember from 'ember-metal/core'; // FEATURES, Logger, assert
+import Ember from 'ember-metal/core'; // Logger
+import { assert, deprecate } from 'ember-metal/assert';
 import isEnabled from 'ember-metal/features';
 
 import { get } from 'ember-metal/property_get';

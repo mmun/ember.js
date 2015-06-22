@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core';
+import { deprecate } from 'ember-metal/assert';
 import { get } from 'ember-metal/property_get';
 import { guidFor } from 'ember-metal/utils';
 

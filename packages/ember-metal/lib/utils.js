@@ -3,7 +3,7 @@
 //
 'REMOVE_USE_STRICT: true';
 
-import Ember from 'ember-metal/core';
+import { deprecate } from 'ember-metal/assert';
 import isEnabled from 'ember-metal/features';
 
 /**

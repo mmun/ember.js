@@ -1,4 +1,5 @@
 import Ember from 'ember-metal/core';
+import { assert, deprecate } from 'ember-metal/assert';
 import { get } from 'ember-metal/property_get';
 
 import EmberObject from 'ember-runtime/system/object';

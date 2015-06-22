@@ -4,6 +4,7 @@
 */
 
 import Ember from 'ember-metal/core';
+import { deprecate } from 'ember-metal/assert';
 import { isGlobal } from 'ember-metal/path_cache';
 import ProxyStream from 'ember-metal/streams/proxy-stream';
 

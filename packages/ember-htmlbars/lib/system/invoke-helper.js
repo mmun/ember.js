@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core';
+import { assert } from 'ember-metal/assert';
 import HelperInstanceStream from 'ember-htmlbars/streams/helper-instance';
 import HelperFactoryStream from 'ember-htmlbars/streams/helper-factory';
 import BuiltInHelperStream from 'ember-htmlbars/streams/built-in-helper';

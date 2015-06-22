@@ -3,6 +3,7 @@
 @submodule ember-views
 */
 import Ember from 'ember-metal/core';
+import { assert } from 'ember-metal/assert';
 import { Mixin } from 'ember-metal/mixin';
 import { get } from 'ember-metal/property_get';
 import { set } from 'ember-metal/property_set';

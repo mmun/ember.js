@@ -11,6 +11,7 @@ import 'ember-routing-htmlbars';
 import 'ember-routing-views';
 
 import Ember from 'ember-metal/core';
+import { deprecate } from 'ember-metal/assert';
 import environment from 'ember-metal/environment';
 import { runLoadHooks } from 'ember-runtime/system/lazy_load';
 

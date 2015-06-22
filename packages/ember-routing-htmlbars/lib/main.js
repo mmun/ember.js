@@ -4,6 +4,7 @@
 */
 
 import Ember from 'ember-metal/core';
+import { deprecate } from 'ember-metal/assert';
 import merge from 'ember-metal/merge';
 
 import { registerHelper } from 'ember-htmlbars/helpers';

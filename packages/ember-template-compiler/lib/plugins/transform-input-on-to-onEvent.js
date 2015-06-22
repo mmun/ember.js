@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core';
+import { deprecate } from 'ember-metal/assert';
 import calculateLocationDisplay from 'ember-template-compiler/system/calculate-location-display';
 
 /**

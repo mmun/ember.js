@@ -1,4 +1,5 @@
-import Ember from 'ember-metal/core'; // Ember.assert, Ember.Handlebars
+import Ember from 'ember-metal/core'; // Ember.Handlebars
+import { assert, deprecate } from 'ember-metal/assert';
 
 import ComponentTemplateDeprecation from 'ember-views/mixins/component_template_deprecation';
 import TargetActionSupport from 'ember-runtime/mixins/target_action_support';

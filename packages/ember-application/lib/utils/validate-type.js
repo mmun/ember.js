@@ -1,11 +1,9 @@
-import { assert, deprecate } from 'ember-metal/assert';
-
 /**
 @module ember
 @submodule ember-application
 */
 
-import Ember from 'ember-metal/core';
+import { assert, deprecate } from 'ember-metal/assert';
 
 let VALIDATED_TYPES = {
   route:     ['assert',    'isRouteFactory',     'Ember.Route'],

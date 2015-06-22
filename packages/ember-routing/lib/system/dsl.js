@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core'; // FEATURES, assert
+import { assert } from 'ember-metal/assert';
 import isEnabled from 'ember-metal/features';
 
 /**

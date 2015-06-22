@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core'; // FEATURES
+import { assert } from 'ember-metal/assert';
 import { get } from 'ember-metal/property_get';
 import { set } from 'ember-metal/property_set';
 import { tryInvoke } from 'ember-metal/utils';

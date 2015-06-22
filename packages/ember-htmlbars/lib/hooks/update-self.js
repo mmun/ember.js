@@ -3,7 +3,7 @@
 @submodule ember-htmlbars
 */
 
-import Ember from 'ember-metal/core';
+import { assert } from 'ember-metal/assert';
 import { get } from 'ember-metal/property_get';
 import updateScope from 'ember-htmlbars/utils/update-scope';
 
