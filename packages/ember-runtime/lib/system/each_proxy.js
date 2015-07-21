@@ -3,7 +3,7 @@
 @submodule ember-runtime
 */
 
-import Ember from 'ember-metal/core'; // Ember.assert
+import { assert } from 'ember-metal/assert';
 
 import { get } from 'ember-metal/property_get';
 import { guidFor } from 'ember-metal/utils';
@@ -60,7 +60,7 @@ function addObserverForContentKey(content, keyName, proxy, idx, loc) {
   while (--loc >= idx) {
     var item = content.objectAt(loc);
     if (item) {
-      Ember.assert('When using @each to observe the array ' + content + ', the array must return an object', typeOf(item) === 'instance' || typeOf(item) === 'object');
+      assert('When using @each to observe the array ' + content + ', the array must return an object', typeOf(item) === 'instance' || typeOf(item) === 'object');
       _addBeforeObserver(item, keyName, proxy, 'contentKeyWillChange');
       addObserver(item, keyName, proxy, 'contentKeyDidChange');
 

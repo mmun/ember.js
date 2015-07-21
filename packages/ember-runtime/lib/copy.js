@@ -1,4 +1,4 @@
-import Ember from 'ember-metal/core';
+import { assert } from 'ember-metal/assert';
 import EmberObject from 'ember-runtime/system/object';
 import Copyable from 'ember-runtime/mixins/copyable';
 
@@ -15,7 +15,7 @@ function _copy(obj, deep, seen, copies) {
     return copies[loc];
   }
 
-  Ember.assert('Cannot clone an Ember.Object that does not implement Ember.Copyable',
+  assert('Cannot clone an Ember.Object that does not implement Ember.Copyable',
     !(obj instanceof EmberObject) || (Copyable && Copyable.detect(obj)));
 
   // IMPORTANT: this specific test will detect a native array only. Any other

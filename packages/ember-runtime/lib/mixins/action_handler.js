@@ -2,7 +2,7 @@
 @module ember
 @submodule ember-runtime
 */
-import Ember from 'ember-metal/core';
+import { assert, deprecate } from 'ember-metal/assert';
 import merge from 'ember-metal/merge';
 import { Mixin } from 'ember-metal/mixin';
 import { get } from 'ember-metal/property_get';
@@ -158,12 +158,12 @@ var ActionHandler = Mixin.create({
     var hashName;
 
     if (!props._actions) {
-      Ember.assert('\'actions\' should not be a function', typeof(props.actions) !== 'function');
+      assert('\'actions\' should not be a function', typeof(props.actions) !== 'function');
 
       if (!!props.actions && typeof props.actions === 'object') {
         hashName = 'actions';
       } else if (!!props.events && typeof props.events === 'object') {
-        Ember.deprecate('Action handlers contained in an `events` object are deprecated in favor' +
+        deprecate('Action handlers contained in an `events` object are deprecated in favor' +
                         ' of putting them in an `actions` object', false);
         hashName = 'events';
       }
@@ -215,7 +215,7 @@ var ActionHandler = Mixin.create({
     }
 
     if (target = get(this, 'target')) {
-      Ember.assert('The `target` for ' + this + ' (' + target +
+      assert('The `target` for ' + this + ' (' + target +
                    ') does not have a `send` method', typeof target.send === 'function');
       target.send(...arguments);
     }

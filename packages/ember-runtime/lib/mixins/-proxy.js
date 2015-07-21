@@ -3,7 +3,7 @@
 @submodule ember-runtime
 */
 
-import Ember from 'ember-metal/core'; // Ember.assert
+import { assert, deprecate } from 'ember-metal/assert';
 import { get } from 'ember-metal/property_get';
 import { set } from 'ember-metal/property_set';
 import { meta } from 'ember-metal/utils';
@@ -53,7 +53,7 @@ export default Mixin.create({
   */
   content: null,
   _contentDidChange: observer('content', function() {
-    Ember.assert('Can\'t set Proxy\'s content to itself', get(this, 'content') !== this);
+    assert('Can\'t set Proxy\'s content to itself', get(this, 'content') !== this);
   }),
 
   isTruthy: computed.bool('content'),
@@ -75,7 +75,7 @@ export default Mixin.create({
   unknownProperty(key) {
     var content = get(this, 'content');
     if (content) {
-      Ember.deprecate(
+      deprecate(
         fmt('You attempted to access `%@` from `%@`, but object proxying is deprecated. ' +
             'Please use `model.%@` instead.', [key, this, key]),
         !this.isController
@@ -94,10 +94,10 @@ export default Mixin.create({
     }
 
     var content = get(this, 'content');
-    Ember.assert(fmt('Cannot delegate set(\'%@\', %@) to the \'content\' property of' +
+    assert(fmt('Cannot delegate set(\'%@\', %@) to the \'content\' property of' +
                      ' object proxy %@: its \'content\' is undefined.', [key, value, this]), content);
 
-    Ember.deprecate(
+    deprecate(
       fmt('You attempted to set `%@` from `%@`, but object proxying is deprecated. ' +
           'Please use `model.%@` instead.', [key, this, key]),
       !this.isController

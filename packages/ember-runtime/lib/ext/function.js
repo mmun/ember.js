@@ -3,7 +3,8 @@
 @submodule ember-runtime
 */
 
-import Ember from 'ember-metal/core'; // Ember.EXTEND_PROTOTYPES, Ember.assert
+import Ember from 'ember-metal/core'; // Ember.EXTEND_PROTOTYPES
+import { assert, deprecateFunc } from 'ember-metal/assert';
 import expandProperties from 'ember-metal/expand_properties';
 import { computed } from 'ember-metal/computed';
 import { observer } from 'ember-metal/mixin';
@@ -110,7 +111,7 @@ if (Ember.EXTEND_PROTOTYPES === true || Ember.EXTEND_PROTOTYPES.Function) {
 
 
   FunctionPrototype._observesImmediately = function () {
-    Ember.assert('Immediate observers must observe internal properties only, ' +
+    assert('Immediate observers must observe internal properties only, ' +
                  'not properties on other objects.', function checkIsInternalProperty() {
       for (var i = 0, l = arguments.length; i < l; i++) {
         if (arguments[i].indexOf('.') !== -1) {
@@ -150,7 +151,10 @@ if (Ember.EXTEND_PROTOTYPES === true || Ember.EXTEND_PROTOTYPES.Function) {
     @deprecated
     @private
   */
-  FunctionPrototype.observesImmediately = Ember.deprecateFunc('Function#observesImmediately is deprecated. Use Function#observes instead', FunctionPrototype._observesImmediately);
+  FunctionPrototype.observesImmediately = deprecateFunc(
+    `Function#observesImmediately is deprecated. Use Function#observes instead`,
+    FunctionPrototype._observesImmediately
+  );
 
   /**
     The `observesBefore` extension of Javascript's Function prototype is

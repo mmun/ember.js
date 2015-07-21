@@ -225,7 +225,6 @@ if (canUseInstanceInitializers && canUseApplicationVisit) {
   });
 
   QUnit.test("It is possible to render non-escaped content", function(assert) {
-    debugger;
     run(function() {
       app = createApplication();
 
