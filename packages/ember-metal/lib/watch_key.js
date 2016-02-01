@@ -1,13 +1,12 @@
 import isEnabled from 'ember-metal/features';
-import {
-  meta as metaFor
-} from 'ember-metal/meta';
+import { warn } from 'ember-metal/debug';
+import { meta as metaFor } from 'ember-metal/meta';
 import {
   MANDATORY_SETTER_FUNCTION,
   DEFAULT_GETTER_FUNCTION,
   INHERITING_GETTER_FUNCTION
 } from 'ember-metal/properties';
-import { lookupDescriptor } from 'ember-metal/utils';
+import { lookupDescriptor, toString } from 'ember-metal/utils';
 
 let handleMandatorySetter;
 
@@ -81,6 +80,13 @@ if (isEnabled('mandatory-setter')) {
 export function unwatchKey(obj, keyName, meta) {
   var m = meta || metaFor(obj);
   let count = m.peekWatching(keyName);
+
+  warn(
+    `Tried to unwatch '${keyName}' on ${toString(obj)} but no one was watching`,
+    count > 0,
+    { id: 'ember-metal.unwatch-unwatched-path' }
+  );
+
   if (count === 1) {
     m.writeWatching(keyName, 0);
 
