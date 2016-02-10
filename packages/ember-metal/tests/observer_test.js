@@ -1257,3 +1257,29 @@ testBoth('observers switched on and off with setter in between (observed propert
   removeObserver(beer, 'type', K);
   deepEqual(Object.keys(itsMyLastBeer), ['type'], 'set -> removeObserver');
 });
+
+testBoth('adding the same observer multiple times throws an error', function (get, set) {
+  function Beer() { }
+  Beer.prototype.type = 'ipa';
+
+  let beer = new Beer();
+
+  addObserver(beer, 'type', K);
+
+  expectWarning(() => {
+    addObserver(beer, 'type', K);
+  }, /Tried to add.*'type:change'/);
+});
+
+testBoth('removing a non-existant observer throws an error', function (get, set) {
+  function Beer() { }
+  Beer.prototype.type = 'ipa';
+
+  let beer = new Beer();
+
+  addObserver(beer, 'type', function() {});
+
+  expectWarning(() => {
+    removeObserver(beer, 'type', K);
+  }, /Tried to remove.*'type:change'/);
+});

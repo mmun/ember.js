@@ -1,3 +1,6 @@
+import { warn, runInDebug } from 'ember-metal/debug';
+import { toString } from 'ember-metal/utils';
+
 /*
  When we render a rich template hierarchy, the set of events that
  *might* happen tends to be much larger than the set of events that
@@ -20,6 +23,28 @@ export var protoMethods = {
     if (!this._listeners) {
       this._listeners = [];
     }
+
+    runInDebug(() => {
+      // Assert that an observer is only used once.
+      let listeners = this._listeners;
+      let matchFound = false;
+
+      for (let i = listeners.length - 4; i >= 0; i -= 4) {
+        if (listeners[i + 1] === target &&
+            listeners[i + 2] === method &&
+            listeners[i] === eventName) {
+          matchFound = true;
+          break;
+        }
+      }
+
+      warn(
+        `Tried to add a duplicate listener for '${eventName}' on ${toString(this.source)}`,
+        !matchFound,
+        { id: 'ember-metal.tried-to-add-a-duplicate-listener' }
+      );
+    });
+
     this._listeners.push(eventName, target, method, flags);
   },
 
@@ -39,6 +64,7 @@ export var protoMethods = {
   },
 
   removeFromListeners(eventName, target, method, didRemove) {
+    let matchFound = false;
     let pointer = this;
     while (pointer) {
       let listeners = pointer._listeners;
@@ -51,12 +77,14 @@ export var protoMethods = {
                 didRemove(eventName, target, listeners[index + 2]);
               }
               listeners.splice(index, 4);
+              matchFound = true;
             } else {
               // we are trying to remove an inherited listener, so we do
               // just-in-time copying to detach our own listeners from
               // our inheritance chain.
               this._finalizeListeners();
-              return this.removeFromListeners(eventName, target, method);
+              this.removeFromListeners(eventName, target, method);
+              return;
             }
           }
         }
@@ -64,6 +92,12 @@ export var protoMethods = {
       if (pointer._listenersFinalized) { break; }
       pointer = pointer.parent;
     }
+
+    warn(
+      `Tried to remove a listener that was never registered for '${eventName}' on ${toString(this.source)}`,
+      matchFound,
+      { id: 'ember-metal.failed-to-remove-listener' }
+    );
   },
 
   matchingListeners(eventName) {
