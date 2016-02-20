@@ -100,7 +100,9 @@ testBoth('Calling connect more than once', function(get, set) {
   performTest(binding, a, b, get, set, function () {
     binding.connect(a);
 
-    binding.connect(a);
+    expectWarning(() => {
+      binding.connect(a);
+    }, /Tried to add.*'b.bar:change'/);
   });
 });
 
